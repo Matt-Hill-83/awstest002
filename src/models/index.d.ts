@@ -1,103 +1,48 @@
-import {
-  ModelInit,
-  MutableModel,
-  PersistentModelConstructor,
-} from "@aws-amplify/datastore"
+import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
-type DialogCritterMetaData = {
-  readOnlyFields: "createdAt" | "updatedAt"
+
+
+
+
+type BlogMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type DialogMetaData = {
-  readOnlyFields: "createdAt" | "updatedAt"
+type PostMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type CritterMetaData = {
-  readOnlyFields: "createdAt" | "updatedAt"
+type CommentMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type FrameSetMetaData = {
-  readOnlyFields: "createdAt" | "updatedAt"
+export declare class Blog {
+  readonly id: string;
+  readonly name: string;
+  readonly posts?: (Post | null)[];
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Blog, BlogMetaData>);
+  static copyOf(source: Blog, mutator: (draft: MutableModel<Blog, BlogMetaData>) => MutableModel<Blog, BlogMetaData> | void): Blog;
 }
 
-type FrameMetaData = {
-  readOnlyFields: "createdAt" | "updatedAt"
+export declare class Post {
+  readonly id: string;
+  readonly title: string;
+  readonly blogID: string;
+  readonly comments?: (Comment | null)[];
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Post, PostMetaData>);
+  static copyOf(source: Post, mutator: (draft: MutableModel<Post, PostMetaData>) => MutableModel<Post, PostMetaData> | void): Post;
 }
 
-export declare class DialogCritter {
-  readonly id: string
-  readonly Dialog?: Dialog
-  readonly Critter?: Critter
-  readonly createdAt?: string
-  readonly updatedAt?: string
-  constructor(init: ModelInit<DialogCritter, DialogCritterMetaData>)
-  static copyOf(
-    source: DialogCritter,
-    mutator: (
-      draft: MutableModel<DialogCritter, DialogCritterMetaData>
-    ) => MutableModel<DialogCritter, DialogCritterMetaData> | void
-  ): DialogCritter
-}
-
-export declare class Dialog {
-  readonly id: string
-  readonly text?: string
-  readonly frameID?: string
-  readonly critterID?: string
-  readonly createdAt?: string
-  readonly updatedAt?: string
-  constructor(init: ModelInit<Dialog, DialogMetaData>)
-  static copyOf(
-    source: Dialog,
-    mutator: (
-      draft: MutableModel<Dialog, DialogMetaData>
-    ) => MutableModel<Dialog, DialogMetaData> | void
-  ): Dialog
-}
-
-export declare class Critter {
-  readonly id: string
-  readonly name?: string
-  readonly Dialogs?: (Dialog | null)[]
-  readonly createdAt?: string
-  readonly updatedAt?: string
-  constructor(init: ModelInit<Critter, CritterMetaData>)
-  static copyOf(
-    source: Critter,
-    mutator: (
-      draft: MutableModel<Critter, CritterMetaData>
-    ) => MutableModel<Critter, CritterMetaData> | void
-  ): Critter
-}
-
-export declare class FrameSet {
-  readonly id: string
-  readonly Frames?: (Frame | null)[]
-  readonly name?: string
-  readonly description?: string
-  readonly createdAt?: string
-  readonly updatedAt?: string
-  constructor(init: ModelInit<FrameSet, FrameSetMetaData>)
-  static copyOf(
-    source: FrameSet,
-    mutator: (
-      draft: MutableModel<FrameSet, FrameSetMetaData>
-    ) => MutableModel<FrameSet, FrameSetMetaData> | void
-  ): FrameSet
-}
-
-export declare class Frame {
-  readonly id: string
-  readonly name?: string
-  readonly frameSetID?: string
-  readonly Dialogs?: (Dialog | null)[]
-  readonly createdAt?: string
-  readonly updatedAt?: string
-  constructor(init: ModelInit<Frame, FrameMetaData>)
-  static copyOf(
-    source: Frame,
-    mutator: (
-      draft: MutableModel<Frame, FrameMetaData>
-    ) => MutableModel<Frame, FrameMetaData> | void
-  ): Frame
+export declare class Comment {
+  readonly id: string;
+  readonly postID: string;
+  readonly content: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Comment, CommentMetaData>);
+  static copyOf(source: Comment, mutator: (draft: MutableModel<Comment, CommentMetaData>) => MutableModel<Comment, CommentMetaData> | void): Comment;
 }
