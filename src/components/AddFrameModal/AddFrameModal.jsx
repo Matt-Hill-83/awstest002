@@ -4,7 +4,7 @@ import { Form, Field } from "formik"
 import * as Yup from "yup"
 import { API, graphqlOperation } from "aws-amplify"
 
-import { createFrameSet } from "../../graphql/mutations"
+import { createFrame } from "../../graphql/mutations"
 
 import AddModal from "../AddModal/AddModal"
 import SelectFormik from "../SelectFormik/SelectFormik"
@@ -17,10 +17,9 @@ const thisButtonLabel = "Frame"
 export default function AddFrameModal(props) {
   const { buttonLabel = thisButtonLabel, className } = props
 
-  const initialValues = { name: "", description: "" }
+  const initialValues = { name: "" }
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
-    description: Yup.string(),
   })
 
   const options = [
@@ -49,10 +48,6 @@ export default function AddFrameModal(props) {
           <FormLabel htmlFor="name">Name</FormLabel>
           <Field name="name" className="form-control" type="text" />
         </FormGroup>
-        <FormGroup controlId="description">
-          <FormLabel htmlFor="description">Description</FormLabel>
-          <Field name="description" className="form-control" type="text" />
-        </FormGroup>
         <Field
           name="firstName"
           component={CustomInputComponent}
@@ -73,7 +68,7 @@ export default function AddFrameModal(props) {
   const onSubmit = async (formData) => {
     console.log("formData=======================", formData) // zzz
     const test = await API.graphql(
-      graphqlOperation(createFrameSet, { input: formData })
+      graphqlOperation(createFrame, { input: formData })
     )
     return test
   }
