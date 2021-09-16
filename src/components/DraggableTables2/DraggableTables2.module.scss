@@ -28,6 +28,12 @@
     height: 44px;
     background-color: #ffffd7;
     padding: 0px, 5px;
+
+    .cell {
+      border: 1px solid red !important;
+      width: 100px;
+      margin-right: 10px;
+    }
   }
 
   .rowContent {

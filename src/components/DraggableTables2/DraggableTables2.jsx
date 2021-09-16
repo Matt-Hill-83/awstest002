@@ -130,7 +130,10 @@ function DraggableTables2(props) {
         <DragHandleIcon className={css.dragger} />
         <div className={css.rowContent}>
           {/* <i class="bi bi-justify"></i> */}
-          {item.name}
+          <div className={css.cell}>{item.frameSet}</div>
+          <div className={css.cell}>{item.frame}</div>
+          <div className={css.cell}>{item.critter}</div>
+          <div className={css.cell}>{item.text}</div>
           <input></input>
           <ButtonGroup className={css.rowButtons}>
             <Button
