@@ -4,8 +4,9 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 import { Button, ButtonGroup } from "react-bootstrap"
 
 import DragHandleIcon from "@material-ui/icons/DragHandle"
-
 import css from "./DraggableTables2.module.scss"
+
+import { createDialog } from "../../graphql/mutations"
 
 // fake data generator
 const getItems = (count, offset = 0) =>

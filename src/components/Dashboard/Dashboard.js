@@ -24,7 +24,6 @@ function Dashboard() {
       graphqlOperation(onCreateFrameSet)
     ).subscribe({
       next: ({ _, value }) => {
-        // console.log("value", value) // zzz
         fetchFrameSets()
       },
     })
@@ -51,9 +50,7 @@ function Dashboard() {
         const newFrame = []
         const dialogs = frame?.Dialogs?.items || []
 
-        console.log("frames?.Dialogs?.items", frame?.Dialogs?.items) // zzz
         dialogs.forEach((dialog) => {
-          console.log("dialog.id", dialog.id) // zzz
           const newDialog = {
             id: dialog.id,
             frameSet: frameSet.name,
@@ -72,13 +69,6 @@ function Dashboard() {
       return item.length > 0
     })
     return test
-    return output
-  }
-
-  const renderRows = () => {
-    return rowData[0].map((row) => {
-      return <div>{row.name}</div>
-    })
   }
 
   console.log("rowData", rowData) // zzz
@@ -88,10 +78,7 @@ function Dashboard() {
         <AddFrameSetModal />
         <AddFrameModal />
       </ButtonGroup>
-      {/* {renderRows()} */}
-      {/* <DraggableTables></DraggableTables> */}
       <DraggableTables2 frameSets={rowData}></DraggableTables2>
-      {/* <DraggableTables2 frameSets={[rowData]}></DraggableTables2> */}
     </div>
   )
 }
