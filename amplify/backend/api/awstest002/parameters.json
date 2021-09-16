@@ -1,5 +1,0 @@
-{
-  "AppSyncApiName": "awstest002",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
-}
