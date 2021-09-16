@@ -8,7 +8,6 @@ type Dialog
   @auth(rules: [{ allow: public }])
   @key(name: "byFrame", fields: ["frameID"]) {
   id: ID!
-  name: String
   text: String
   frameID: ID
   Critter: Critter @connection

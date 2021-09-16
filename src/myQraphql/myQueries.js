@@ -6,24 +6,25 @@ export const listFrameSets2 = /* GraphQL */ `
   ) {
     listFrameSets(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        name
-        id
         Frames {
           items {
             name
             id
             Dialogs {
               items {
-                id
                 text
+                name
+                id
                 Critter {
-                  id
                   name
+                  id
                 }
               }
             }
           }
         }
+        name
+        id
       }
     }
   }

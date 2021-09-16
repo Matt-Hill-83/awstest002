@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createCritter = /* GraphQL */ `
+  mutation CreateCritter(
+    $input: CreateCritterInput!
+    $condition: ModelCritterConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
+    createCritter(input: $input, condition: $condition) {
       id
       name
       _version
@@ -14,19 +14,15 @@ export const createBlog = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      posts {
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
+export const updateCritter = /* GraphQL */ `
+  mutation UpdateCritter(
+    $input: UpdateCritterInput!
+    $condition: ModelCritterConditionInput
   ) {
-    updateBlog(input: $input, condition: $condition) {
+    updateCritter(input: $input, condition: $condition) {
       id
       name
       _version
@@ -34,19 +30,15 @@ export const updateBlog = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      posts {
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
+export const deleteCritter = /* GraphQL */ `
+  mutation DeleteCritter(
+    $input: DeleteCritterInput!
+    $condition: ModelCritterConditionInput
   ) {
-    deleteBlog(input: $input, condition: $condition) {
+    deleteCritter(input: $input, condition: $condition) {
       id
       name
       _version
@@ -54,124 +46,207 @@ export const deleteBlog = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      posts {
+    }
+  }
+`;
+export const createDialog = /* GraphQL */ `
+  mutation CreateDialog(
+    $input: CreateDialogInput!
+    $condition: ModelDialogConditionInput
+  ) {
+    createDialog(input: $input, condition: $condition) {
+      id
+      text
+      frameID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Critter {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const updateDialog = /* GraphQL */ `
+  mutation UpdateDialog(
+    $input: UpdateDialogInput!
+    $condition: ModelDialogConditionInput
+  ) {
+    updateDialog(input: $input, condition: $condition) {
+      id
+      text
+      frameID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Critter {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const deleteDialog = /* GraphQL */ `
+  mutation DeleteDialog(
+    $input: DeleteDialogInput!
+    $condition: ModelDialogConditionInput
+  ) {
+    deleteDialog(input: $input, condition: $condition) {
+      id
+      text
+      frameID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Critter {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const createFrame = /* GraphQL */ `
+  mutation CreateFrame(
+    $input: CreateFrameInput!
+    $condition: ModelFrameConditionInput
+  ) {
+    createFrame(input: $input, condition: $condition) {
+      id
+      name
+      framesetID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Dialogs {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
+export const updateFrame = /* GraphQL */ `
+  mutation UpdateFrame(
+    $input: UpdateFrameInput!
+    $condition: ModelFrameConditionInput
   ) {
-    createPost(input: $input, condition: $condition) {
+    updateFrame(input: $input, condition: $condition) {
       id
-      title
-      blogID
+      name
+      framesetID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      comments {
+      Dialogs {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const deleteFrame = /* GraphQL */ `
+  mutation DeleteFrame(
+    $input: DeleteFrameInput!
+    $condition: ModelFrameConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    deleteFrame(input: $input, condition: $condition) {
       id
-      title
-      blogID
+      name
+      framesetID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      comments {
+      Dialogs {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const createFrameSet = /* GraphQL */ `
+  mutation CreateFrameSet(
+    $input: CreateFrameSetInput!
+    $condition: ModelFrameSetConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    createFrameSet(input: $input, condition: $condition) {
       id
-      title
-      blogID
+      name
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      comments {
+      Frames {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateFrameSet = /* GraphQL */ `
+  mutation UpdateFrameSet(
+    $input: UpdateFrameSetInput!
+    $condition: ModelFrameSetConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    updateFrameSet(input: $input, condition: $condition) {
       id
-      postID
-      content
+      name
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      Frames {
+        nextToken
+        startedAt
+      }
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteFrameSet = /* GraphQL */ `
+  mutation DeleteFrameSet(
+    $input: DeleteFrameSetInput!
+    $condition: ModelFrameSetConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    deleteFrameSet(input: $input, condition: $condition) {
       id
-      postID
-      content
+      name
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-    }
-  }
-`;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
-  ) {
-    deleteComment(input: $input, condition: $condition) {
-      id
-      postID
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
+      Frames {
+        nextToken
+        startedAt
+      }
     }
   }
 `;

@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
+export const onCreateCritter = /* GraphQL */ `
+  subscription OnCreateCritter {
+    onCreateCritter {
       id
       name
       _version
@@ -11,16 +11,12 @@ export const onCreateBlog = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      posts {
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
+export const onUpdateCritter = /* GraphQL */ `
+  subscription OnUpdateCritter {
+    onUpdateCritter {
       id
       name
       _version
@@ -28,16 +24,12 @@ export const onUpdateBlog = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      posts {
-        nextToken
-        startedAt
-      }
     }
   }
 `;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
+export const onDeleteCritter = /* GraphQL */ `
+  subscription OnDeleteCritter {
+    onDeleteCritter {
       id
       name
       _version
@@ -45,106 +37,180 @@ export const onDeleteBlog = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      posts {
+    }
+  }
+`;
+export const onCreateDialog = /* GraphQL */ `
+  subscription OnCreateDialog {
+    onCreateDialog {
+      id
+      text
+      frameID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Critter {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onUpdateDialog = /* GraphQL */ `
+  subscription OnUpdateDialog {
+    onUpdateDialog {
+      id
+      text
+      frameID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Critter {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onDeleteDialog = /* GraphQL */ `
+  subscription OnDeleteDialog {
+    onDeleteDialog {
+      id
+      text
+      frameID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Critter {
+        id
+        name
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onCreateFrame = /* GraphQL */ `
+  subscription OnCreateFrame {
+    onCreateFrame {
+      id
+      name
+      framesetID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Dialogs {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onUpdateFrame = /* GraphQL */ `
+  subscription OnUpdateFrame {
+    onUpdateFrame {
       id
-      title
-      blogID
+      name
+      framesetID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      comments {
+      Dialogs {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onDeleteFrame = /* GraphQL */ `
+  subscription OnDeleteFrame {
+    onDeleteFrame {
       id
-      title
-      blogID
+      name
+      framesetID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      comments {
+      Dialogs {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onCreateFrameSet = /* GraphQL */ `
+  subscription OnCreateFrameSet {
+    onCreateFrameSet {
       id
-      title
-      blogID
+      name
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      comments {
+      Frames {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onUpdateFrameSet = /* GraphQL */ `
+  subscription OnUpdateFrameSet {
+    onUpdateFrameSet {
       id
-      postID
-      content
+      name
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      Frames {
+        nextToken
+        startedAt
+      }
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onDeleteFrameSet = /* GraphQL */ `
+  subscription OnDeleteFrameSet {
+    onDeleteFrameSet {
       id
-      postID
-      content
+      name
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
-      id
-      postID
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
+      Frames {
+        nextToken
+        startedAt
+      }
     }
   }
 `;

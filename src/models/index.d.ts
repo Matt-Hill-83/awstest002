@@ -31,7 +31,6 @@ export declare class Critter {
 
 export declare class Dialog {
   readonly id: string;
-  readonly name?: string;
   readonly text?: string;
   readonly frameID?: string;
   readonly Critter?: Critter;
