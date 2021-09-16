@@ -1,19 +1,31 @@
-type Critter @model @auth(rules: [{allow: public}]) {
+type Critter @model @auth(rules: [{ allow: public }]) {
   id: ID!
+  name: String
 }
 
-type Dialog @model @auth(rules: [{allow: public}]) {
+type Dialog
+  @model
+  @auth(rules: [{ allow: public }])
+  @key(name: "byFrame", fields: ["frameID"]) {
   id: ID!
   name: String
   text: String
+  frameID: ID
+  Critter: Critter @connection
 }
 
-type Frame @model @auth(rules: [{allow: public}]) {
+type Frame
+  @model
+  @auth(rules: [{ allow: public }])
+  @key(name: "byFrameSet", fields: ["framesetID"]) {
   id: ID!
   name: String
+  framesetID: ID
+  Dialogs: [Dialog] @connection(keyName: "byFrame", fields: ["id"])
 }
 
-type FrameSet @model @auth(rules: [{allow: public}]) {
+type FrameSet @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String
+  Frames: [Frame] @connection(keyName: "byFrameSet", fields: ["id"])
 }

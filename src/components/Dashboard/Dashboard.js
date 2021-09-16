@@ -2,9 +2,9 @@ import API from "@aws-amplify/api"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import { useEffect, useState } from "react"
 import { ButtonGroup } from "react-bootstrap"
-import { listFrameSets } from "../../graphql/queries"
-import { listFrameSets2 } from "../../graphql/myQueries"
+
 import { onCreateFrameSet } from "../../graphql/subscriptions"
+import { listFrameSets2 } from "../../myQraphql/myQueries"
 
 import AddFrameModal from "../AddFrameModal/AddFrameModal"
 import AddFrameSetModal from "../AddFrameSetModal/AddFrameSetModal"

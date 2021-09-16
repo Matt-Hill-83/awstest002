@@ -22,6 +22,7 @@ type FrameSetMetaData = {
 
 export declare class Critter {
   readonly id: string;
+  readonly name?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Critter, CritterMetaData>);
@@ -32,6 +33,8 @@ export declare class Dialog {
   readonly id: string;
   readonly name?: string;
   readonly text?: string;
+  readonly frameID?: string;
+  readonly Critter?: Critter;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Dialog, DialogMetaData>);
@@ -41,6 +44,8 @@ export declare class Dialog {
 export declare class Frame {
   readonly id: string;
   readonly name?: string;
+  readonly framesetID?: string;
+  readonly Dialogs?: (Dialog | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Frame, FrameMetaData>);
@@ -50,6 +55,7 @@ export declare class Frame {
 export declare class FrameSet {
   readonly id: string;
   readonly name?: string;
+  readonly Frames?: (Frame | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<FrameSet, FrameSetMetaData>);

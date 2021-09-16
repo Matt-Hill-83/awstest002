@@ -10,6 +10,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -76,6 +83,26 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "frameID": {
+                    "name": "frameID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Critter": {
+                    "name": "Critter",
+                    "isArray": false,
+                    "type": {
+                        "model": "Critter"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "dialogCritterId"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -99,6 +126,15 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byFrame",
+                        "fields": [
+                            "frameID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -135,6 +171,27 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "framesetID": {
+                    "name": "framesetID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Dialogs": {
+                    "name": "Dialogs",
+                    "isArray": true,
+                    "type": {
+                        "model": "Dialog"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "frameID"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -158,6 +215,15 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byFrameSet",
+                        "fields": [
+                            "framesetID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -193,6 +259,20 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "Frames": {
+                    "name": "Frames",
+                    "isArray": true,
+                    "type": {
+                        "model": "Frame"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "framesetID"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -239,5 +319,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4c85288077c626f4028e61a45c08068b"
+    "version": "553b7f685470d64d89abab24867f06f2"
 };
