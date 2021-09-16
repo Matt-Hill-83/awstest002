@@ -1,219 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createFrameSet = /* GraphQL */ `
-  mutation CreateFrameSet(
-    $input: CreateFrameSetInput!
-    $condition: ModelFrameSetConditionInput
+export const createBlog = /* GraphQL */ `
+  mutation CreateBlog(
+    $input: CreateBlogInput!
+    $condition: ModelBlogConditionInput
   ) {
-    createFrameSet(input: $input, condition: $condition) {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const updateFrameSet = /* GraphQL */ `
-  mutation UpdateFrameSet(
-    $input: UpdateFrameSetInput!
-    $condition: ModelFrameSetConditionInput
-  ) {
-    updateFrameSet(input: $input, condition: $condition) {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const deleteFrameSet = /* GraphQL */ `
-  mutation DeleteFrameSet(
-    $input: DeleteFrameSetInput!
-    $condition: ModelFrameSetConditionInput
-  ) {
-    deleteFrameSet(input: $input, condition: $condition) {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const createFrame = /* GraphQL */ `
-  mutation CreateFrame(
-    $input: CreateFrameInput!
-    $condition: ModelFrameConditionInput
-  ) {
-    createFrame(input: $input, condition: $condition) {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const updateFrame = /* GraphQL */ `
-  mutation UpdateFrame(
-    $input: UpdateFrameInput!
-    $condition: ModelFrameConditionInput
-  ) {
-    updateFrame(input: $input, condition: $condition) {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const deleteFrame = /* GraphQL */ `
-  mutation DeleteFrame(
-    $input: DeleteFrameInput!
-    $condition: ModelFrameConditionInput
-  ) {
-    deleteFrame(input: $input, condition: $condition) {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const createDialog = /* GraphQL */ `
-  mutation CreateDialog(
-    $input: CreateDialogInput!
-    $condition: ModelDialogConditionInput
-  ) {
-    createDialog(input: $input, condition: $condition) {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const updateDialog = /* GraphQL */ `
-  mutation UpdateDialog(
-    $input: UpdateDialogInput!
-    $condition: ModelDialogConditionInput
-  ) {
-    updateDialog(input: $input, condition: $condition) {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const deleteDialog = /* GraphQL */ `
-  mutation DeleteDialog(
-    $input: DeleteDialogInput!
-    $condition: ModelDialogConditionInput
-  ) {
-    deleteDialog(input: $input, condition: $condition) {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const createCritter = /* GraphQL */ `
-  mutation CreateCritter(
-    $input: CreateCritterInput!
-    $condition: ModelCritterConditionInput
-  ) {
-    createCritter(input: $input, condition: $condition) {
+    createBlog(input: $input, condition: $condition) {
       id
       name
       _version
@@ -221,19 +14,19 @@ export const createCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const updateCritter = /* GraphQL */ `
-  mutation UpdateCritter(
-    $input: UpdateCritterInput!
-    $condition: ModelCritterConditionInput
+export const updateBlog = /* GraphQL */ `
+  mutation UpdateBlog(
+    $input: UpdateBlogInput!
+    $condition: ModelBlogConditionInput
   ) {
-    updateCritter(input: $input, condition: $condition) {
+    updateBlog(input: $input, condition: $condition) {
       id
       name
       _version
@@ -241,19 +34,19 @@ export const updateCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const deleteCritter = /* GraphQL */ `
-  mutation DeleteCritter(
-    $input: DeleteCritterInput!
-    $condition: ModelCritterConditionInput
+export const deleteBlog = /* GraphQL */ `
+  mutation DeleteBlog(
+    $input: DeleteBlogInput!
+    $condition: ModelBlogConditionInput
   ) {
-    deleteCritter(input: $input, condition: $condition) {
+    deleteBlog(input: $input, condition: $condition) {
       id
       name
       _version
@@ -261,121 +54,124 @@ export const deleteCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const createDialogCritter = /* GraphQL */ `
-  mutation CreateDialogCritter(
-    $input: CreateDialogCritterInput!
-    $condition: ModelDialogCritterConditionInput
+export const createPost = /* GraphQL */ `
+  mutation CreatePost(
+    $input: CreatePostInput!
+    $condition: ModelPostConditionInput
   ) {
-    createDialogCritter(input: $input, condition: $condition) {
+    createPost(input: $input, condition: $condition) {
       id
-      dialogID
-      critterID
+      title
+      blogID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      dialog {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+      comments {
+        nextToken
+        startedAt
       }
     }
   }
 `;
-export const updateDialogCritter = /* GraphQL */ `
-  mutation UpdateDialogCritter(
-    $input: UpdateDialogCritterInput!
-    $condition: ModelDialogCritterConditionInput
+export const updatePost = /* GraphQL */ `
+  mutation UpdatePost(
+    $input: UpdatePostInput!
+    $condition: ModelPostConditionInput
   ) {
-    updateDialogCritter(input: $input, condition: $condition) {
+    updatePost(input: $input, condition: $condition) {
       id
-      dialogID
-      critterID
+      title
+      blogID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      dialog {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+      comments {
+        nextToken
+        startedAt
       }
     }
   }
 `;
-export const deleteDialogCritter = /* GraphQL */ `
-  mutation DeleteDialogCritter(
-    $input: DeleteDialogCritterInput!
-    $condition: ModelDialogCritterConditionInput
+export const deletePost = /* GraphQL */ `
+  mutation DeletePost(
+    $input: DeletePostInput!
+    $condition: ModelPostConditionInput
   ) {
-    deleteDialogCritter(input: $input, condition: $condition) {
+    deletePost(input: $input, condition: $condition) {
       id
-      dialogID
-      critterID
+      title
+      blogID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      dialog {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+      comments {
+        nextToken
+        startedAt
       }
-      critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
+    }
+  }
+`;
+export const createComment = /* GraphQL */ `
+  mutation CreateComment(
+    $input: CreateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    createComment(input: $input, condition: $condition) {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateComment = /* GraphQL */ `
+  mutation UpdateComment(
+    $input: UpdateCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    updateComment(input: $input, condition: $condition) {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteComment = /* GraphQL */ `
+  mutation DeleteComment(
+    $input: DeleteCommentInput!
+    $condition: ModelCommentConditionInput
+  ) {
+    deleteComment(input: $input, condition: $condition) {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
   }
 `;

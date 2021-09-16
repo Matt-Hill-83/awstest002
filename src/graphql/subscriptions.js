@@ -1,189 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateFrameSet = /* GraphQL */ `
-  subscription OnCreateFrameSet {
-    onCreateFrameSet {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onUpdateFrameSet = /* GraphQL */ `
-  subscription OnUpdateFrameSet {
-    onUpdateFrameSet {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onDeleteFrameSet = /* GraphQL */ `
-  subscription OnDeleteFrameSet {
-    onDeleteFrameSet {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onCreateFrame = /* GraphQL */ `
-  subscription OnCreateFrame {
-    onCreateFrame {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onUpdateFrame = /* GraphQL */ `
-  subscription OnUpdateFrame {
-    onUpdateFrame {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onDeleteFrame = /* GraphQL */ `
-  subscription OnDeleteFrame {
-    onDeleteFrame {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const onCreateDialog = /* GraphQL */ `
-  subscription OnCreateDialog {
-    onCreateDialog {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const onUpdateDialog = /* GraphQL */ `
-  subscription OnUpdateDialog {
-    onUpdateDialog {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const onDeleteDialog = /* GraphQL */ `
-  subscription OnDeleteDialog {
-    onDeleteDialog {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const onCreateCritter = /* GraphQL */ `
-  subscription OnCreateCritter {
-    onCreateCritter {
+export const onCreateBlog = /* GraphQL */ `
+  subscription OnCreateBlog {
+    onCreateBlog {
       id
       name
       _version
@@ -191,16 +11,16 @@ export const onCreateCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onUpdateCritter = /* GraphQL */ `
-  subscription OnUpdateCritter {
-    onUpdateCritter {
+export const onUpdateBlog = /* GraphQL */ `
+  subscription OnUpdateBlog {
+    onUpdateBlog {
       id
       name
       _version
@@ -208,16 +28,16 @@ export const onUpdateCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onDeleteCritter = /* GraphQL */ `
-  subscription OnDeleteCritter {
-    onDeleteCritter {
+export const onDeleteBlog = /* GraphQL */ `
+  subscription OnDeleteBlog {
+    onDeleteBlog {
       id
       name
       _version
@@ -225,112 +45,106 @@ export const onDeleteCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const onCreateDialogCritter = /* GraphQL */ `
-  subscription OnCreateDialogCritter {
-    onCreateDialogCritter {
+export const onCreatePost = /* GraphQL */ `
+  subscription OnCreatePost {
+    onCreatePost {
       id
-      dialogID
-      critterID
+      title
+      blogID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      dialog {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+      comments {
+        nextToken
+        startedAt
       }
     }
   }
 `;
-export const onUpdateDialogCritter = /* GraphQL */ `
-  subscription OnUpdateDialogCritter {
-    onUpdateDialogCritter {
+export const onUpdatePost = /* GraphQL */ `
+  subscription OnUpdatePost {
+    onUpdatePost {
       id
-      dialogID
-      critterID
+      title
+      blogID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      dialog {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+      comments {
+        nextToken
+        startedAt
       }
     }
   }
 `;
-export const onDeleteDialogCritter = /* GraphQL */ `
-  subscription OnDeleteDialogCritter {
-    onDeleteDialogCritter {
+export const onDeletePost = /* GraphQL */ `
+  subscription OnDeletePost {
+    onDeletePost {
       id
-      dialogID
-      critterID
+      title
+      blogID
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      dialog {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+      comments {
+        nextToken
+        startedAt
       }
-      critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
+    }
+  }
+`;
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
     }
   }
 `;

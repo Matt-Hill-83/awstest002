@@ -1,221 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getFrameSet = /* GraphQL */ `
-  query GetFrameSet($id: ID!) {
-    getFrameSet(id: $id) {
-      id
-      name
-      description
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frames {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const listFrameSets = /* GraphQL */ `
-  query ListFrameSets(
-    $filter: ModelFrameSetFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listFrameSets(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncFrameSets = /* GraphQL */ `
-  query SyncFrameSets(
-    $filter: ModelFrameSetFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncFrameSets(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        description
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getFrame = /* GraphQL */ `
-  query GetFrame($id: ID!) {
-    getFrame(id: $id) {
-      id
-      name
-      frameSetID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Dialogs {
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
-export const listFrames = /* GraphQL */ `
-  query ListFrames(
-    $filter: ModelFrameFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listFrames(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        frameSetID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncFrames = /* GraphQL */ `
-  query SyncFrames(
-    $filter: ModelFrameFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncFrames(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        frameSetID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getDialog = /* GraphQL */ `
-  query GetDialog($id: ID!) {
-    getDialog(id: $id) {
-      id
-      text
-      frameID
-      critterID
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Critter {
-        id
-        name
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const listDialogs = /* GraphQL */ `
-  query ListDialogs(
-    $filter: ModelDialogFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listDialogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncDialogs = /* GraphQL */ `
-  query SyncDialogs(
-    $filter: ModelDialogFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncDialogs(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        text
-        frameID
-        critterID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getCritter = /* GraphQL */ `
-  query GetCritter($id: ID!) {
-    getCritter(id: $id) {
+export const getBlog = /* GraphQL */ `
+  query GetBlog($id: ID!) {
+    getBlog(id: $id) {
       id
       name
       _version
@@ -223,20 +11,20 @@ export const getCritter = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Dialogs {
+      posts {
         nextToken
         startedAt
       }
     }
   }
 `;
-export const listCritters = /* GraphQL */ `
-  query ListCritters(
-    $filter: ModelCritterFilterInput
+export const listBlogs = /* GraphQL */ `
+  query ListBlogs(
+    $filter: ModelBlogFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listCritters(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -251,14 +39,14 @@ export const listCritters = /* GraphQL */ `
     }
   }
 `;
-export const syncCritters = /* GraphQL */ `
-  query SyncCritters(
-    $filter: ModelCritterFilterInput
+export const syncBlogs = /* GraphQL */ `
+  query SyncBlogs(
+    $filter: ModelBlogFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncCritters(
+    syncBlogs(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -278,14 +66,54 @@ export const syncCritters = /* GraphQL */ `
     }
   }
 `;
-export const syncDialogCritters = /* GraphQL */ `
-  query SyncDialogCritters(
-    $filter: ModelDialogCritterFilterInput
+export const getPost = /* GraphQL */ `
+  query GetPost($id: ID!) {
+    getPost(id: $id) {
+      id
+      title
+      blogID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      comments {
+        nextToken
+        startedAt
+      }
+    }
+  }
+`;
+export const listPosts = /* GraphQL */ `
+  query ListPosts(
+    $filter: ModelPostFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        blogID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPosts = /* GraphQL */ `
+  query SyncPosts(
+    $filter: ModelPostFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncDialogCritters(
+    syncPosts(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -293,8 +121,72 @@ export const syncDialogCritters = /* GraphQL */ `
     ) {
       items {
         id
-        dialogID
-        critterID
+        title
+        blogID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getComment = /* GraphQL */ `
+  query GetComment($id: ID!) {
+    getComment(id: $id) {
+      id
+      postID
+      content
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listComments = /* GraphQL */ `
+  query ListComments(
+    $filter: ModelCommentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        postID
+        content
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncComments = /* GraphQL */ `
+  query SyncComments(
+    $filter: ModelCommentFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncComments(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        postID
+        content
         _version
         _deleted
         _lastChangedAt
