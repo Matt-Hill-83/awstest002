@@ -1,7 +1,59 @@
 export const schema = {
     "models": {
-        "Blog": {
-            "name": "Blog",
+        "Critter": {
+            "name": "Critter",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Critters",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Dialog": {
+            "name": "Dialog",
             "fields": {
                 "id": {
                     "name": "id",
@@ -14,22 +66,15 @@ export const schema = {
                     "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
-                "posts": {
-                    "name": "posts",
-                    "isArray": true,
-                    "type": {
-                        "model": "Post"
-                    },
+                "text": {
+                    "name": "text",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "blogID"
-                    }
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -49,7 +94,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Blogs",
+            "pluralName": "Dialogs",
             "attributes": [
                 {
                     "type": "model",
@@ -73,8 +118,8 @@ export const schema = {
                 }
             ]
         },
-        "Post": {
-            "name": "Post",
+        "Frame": {
+            "name": "Frame",
             "fields": {
                 "id": {
                     "name": "id",
@@ -83,33 +128,12 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "title": {
-                    "name": "title",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "blogID": {
-                    "name": "blogID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "comments": {
-                    "name": "comments",
-                    "isArray": true,
-                    "type": {
-                        "model": "Comment"
-                    },
                     "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "postID"
-                    }
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -129,20 +153,11 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Posts",
+            "pluralName": "Frames",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byBlog",
-                        "fields": [
-                            "blogID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -162,8 +177,8 @@ export const schema = {
                 }
             ]
         },
-        "Comment": {
-            "name": "Comment",
+        "FrameSet": {
+            "name": "FrameSet",
             "fields": {
                 "id": {
                     "name": "id",
@@ -172,18 +187,11 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "postID": {
-                    "name": "postID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "content": {
-                    "name": "content",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -204,20 +212,11 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Comments",
+            "pluralName": "FrameSets",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byPost",
-                        "fields": [
-                            "postID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -240,5 +239,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "c8c94c0227f80e0e796da9ca8fd85497"
+    "version": "4c85288077c626f4028e61a45c08068b"
 };

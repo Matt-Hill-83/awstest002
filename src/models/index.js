@@ -4,10 +4,11 @@ import { schema } from './schema';
 
 
 
-const { Blog, Post, Comment } = initSchema(schema);
+const { Critter, Dialog, Frame, FrameSet } = initSchema(schema);
 
 export {
-  Blog,
-  Post,
-  Comment
+  Critter,
+  Dialog,
+  Frame,
+  FrameSet
 };
