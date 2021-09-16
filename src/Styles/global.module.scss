@@ -1,0 +1,27 @@
+body {
+  // Colors
+  --margin-01: 1vh;
+  --margin-02: 2vh;
+
+  --white-100: rgb(238, 238, 238);
+  --white-200: rgb(206, 206, 206);
+  --white-400: rgb(241, 241, 241);
+  --white-500: rgb(250, 249, 250);
+  --white-900: rgb(52, 52, 52);
+
+  --green-100: rgb(156, 169, 147);
+  --blue-100: rgb(112, 152, 196);
+
+  --purple-500: rgb(77, 52, 113);
+
+  // Artifacts
+  --border-color: var(--purple-500);
+  --nav-border-color: var(--white-400);
+
+  --header-color: var(--white-100);
+  --icon-color: var(--white-900);
+  --icon-size: 24px;
+
+  --topNavHeight: 50px;
+  --leftNavWidth: 14vh;
+}

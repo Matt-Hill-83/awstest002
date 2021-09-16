@@ -1,0 +1,76 @@
+.main {
+  border: 1px solid blue !important;
+  display: flex;
+  flex-direction: column;
+  // width: 500px;
+
+  .buttonGroup {
+    width: 50%;
+    display: flex;
+  }
+
+  .groupContainer {
+    border: 1px solid red !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .group {
+    border: 2px solid green !important;
+    margin: var(--margin-01);
+    // display: flex;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    border: 1px solid blue !important;
+    height: 44px;
+    background-color: #ffffd7;
+    padding: 0px, 5px;
+  }
+
+  .rowContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid purple !important;
+    margin: 0px;
+    padding: 0px var(--margin-01);
+    height: 100%;
+    flex: 1;
+  }
+
+  .dragger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px var(--margin-01);
+
+    // border: 4px solid purple !important;
+  }
+
+  .rowButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+    color: var(--icon-color);
+    background-color: transparent;
+  }
+
+  .deleteButton {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    height: var(--icon-size);
+    width: var(--icon-size);
+    margin-left: auto;
+    color: var(--icon-color);
+    background-color: transparent;
+  }
+}
