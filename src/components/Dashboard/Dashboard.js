@@ -24,7 +24,7 @@ function Dashboard() {
       graphqlOperation(onCreateFrameSet)
     ).subscribe({
       next: ({ _, value }) => {
-        console.log("value", value) // zzz
+        // console.log("value", value) // zzz
         fetchFrameSets()
       },
     })
@@ -36,13 +36,9 @@ function Dashboard() {
 
   async function fetchFrameSets() {
     const { data } = await API.graphql(graphqlOperation(listFrameSets2))
-    // const { data } = await API.graphql(graphqlOperation(listFrameSets))
-    console.log("data", data) // zzz
     const items = data?.listFrameSets?.items || []
-    console.log("items", items) // zzz
     const parsedFrameSets = parseFrameSets(items)
-    console.log("parsedFrameSets", parsedFrameSets) // zzz
-    setRowData(items)
+    setRowData(parsedFrameSets)
   }
 
   // TODO : parse GQL into
@@ -57,8 +53,9 @@ function Dashboard() {
 
         console.log("frames?.Dialogs?.items", frame?.Dialogs?.items) // zzz
         dialogs.forEach((dialog) => {
-          console.log("dialog.text", dialog.text) // zzz
+          console.log("dialog.id", dialog.id) // zzz
           const newDialog = {
+            id: dialog.id,
             frameSet: frameSet.name,
             frame: frame.name,
             text: dialog.text,
@@ -70,10 +67,16 @@ function Dashboard() {
       })
     })
     console.log("output", output) // zzz
+
+    const test = output.filter((item) => {
+      return item.length > 0
+    })
+    return test
+    return output
   }
 
   const renderRows = () => {
-    return rowData.map((row) => {
+    return rowData[0].map((row) => {
       return <div>{row.name}</div>
     })
   }
@@ -85,9 +88,10 @@ function Dashboard() {
         <AddFrameSetModal />
         <AddFrameModal />
       </ButtonGroup>
-      {renderRows()}
+      {/* {renderRows()} */}
       {/* <DraggableTables></DraggableTables> */}
-      <DraggableTables2 frameSets={[rowData]}></DraggableTables2>
+      <DraggableTables2 frameSets={rowData}></DraggableTables2>
+      {/* <DraggableTables2 frameSets={[rowData]}></DraggableTables2> */}
     </div>
   )
 }

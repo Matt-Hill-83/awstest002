@@ -73,8 +73,6 @@ export default function AddFrameModal(props) {
     return test
   }
 
-  console.log("render AFSM dialog") // zzz
-
   const modalProps = {
     renderForm,
     className,
