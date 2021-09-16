@@ -7,8 +7,24 @@ import DragHandleIcon from "@material-ui/icons/DragHandle"
 import css from "./DraggableTables2.module.scss"
 
 import { createDialog } from "../../graphql/mutations"
+import { graphqlOperation } from "@aws-amplify/api-graphql"
+import API from "@aws-amplify/api"
 
 // fake data generator
+
+const addDialog = async ({ item }) => {
+  console.log("item", item) // zzz
+
+  const { frameId } = item
+  console.log("frameId", frameId) // zzz
+  const newDialog = { frameID: frameId, text: "new dialog---" }
+
+  const test = await API.graphql(
+    graphqlOperation(createDialog, { input: newDialog })
+  )
+  return test
+}
+
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map((k) => ({
     id: `item-${k + offset}-${new Date().getTime()}`,
@@ -156,10 +172,10 @@ function DraggableTables2(props) {
             <Button
               className={css.deleteButton}
               onClick={() => {
-                addRowAfter({ ind, index })
+                addDialog({ item, ind, index })
               }}
             >
-              <i class="bi bi-plus" />
+              <i class="bi bi-alarm" />
             </Button>
           </ButtonGroup>
         </div>

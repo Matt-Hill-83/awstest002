@@ -55,6 +55,7 @@ function Dashboard() {
             id: dialog.id,
             frameSet: frameSet.name,
             frame: frame.name,
+            frameId: frame.id,
             text: dialog.text,
             critter: dialog?.Critter?.name,
           }
