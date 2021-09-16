@@ -13,7 +13,6 @@ export const listFrameSets2 = /* GraphQL */ `
             Dialogs {
               items {
                 text
-                name
                 id
                 Critter {
                   name
