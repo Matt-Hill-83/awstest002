@@ -10,9 +10,9 @@ import { createDialog, updateDialog } from "../../graphql/mutations"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
 
-const addDialog = async ({ item, index, frameSetIndex }) => {
+const addDialog = async ({ item, index, tableIndex }) => {
   console.log("index", index) // zzz
-  console.log("frameSetIndex", frameSetIndex) // zzz
+  console.log("tableIndex", tableIndex) // zzz
   console.log("item", item) // zzz
 
   const { frameId } = item
@@ -144,9 +144,9 @@ function DraggableTables2(props) {
     setFrameSets([...frameSets, getItems(1)])
   }
 
-  const deleteItem = ({ frameSetIndex, index }) => {
+  const deleteItem = ({ tableIndex, index }) => {
     const newState = [...frameSets]
-    newState[frameSetIndex].splice(index, 1)
+    newState[tableIndex].splice(index, 1)
     setFrameSets(newState.filter((group) => group.length))
   }
 
@@ -163,7 +163,7 @@ function DraggableTables2(props) {
     )
   }
 
-  const getRow = ({ provided, snapshot, item, frameSetIndex, index }) => {
+  const getRow = ({ provided, snapshot, item, tableIndex, index }) => {
     return (
       <div
         ref={provided.innerRef}
@@ -193,7 +193,7 @@ function DraggableTables2(props) {
             <Button
               className={css.deleteButton}
               onClick={() => {
-                deleteItem({ frameSetIndex, index })
+                deleteItem({ tableIndex, index })
               }}
             >
               <i class="bi bi-trash" />
@@ -201,7 +201,7 @@ function DraggableTables2(props) {
             <Button
               className={css.deleteButton}
               onClick={() => {
-                addRowBefore({ frameSetIndex, index })
+                addRowBefore({ tableIndex, index })
               }}
             >
               <i class="bi bi-plus" />
@@ -209,7 +209,7 @@ function DraggableTables2(props) {
             <Button
               className={css.deleteButton}
               onClick={() => {
-                addDialog({ item, frameSetIndex, index })
+                addDialog({ item, tableIndex, index })
               }}
             >
               <i class="bi bi-alarm" />
@@ -225,8 +225,8 @@ function DraggableTables2(props) {
       {renderHeaderButtons()}
       <div className={css.groupContainer}>
         <DragDropContext onDragEnd={onDragEnd}>
-          {frameSets.map((el, frameSetIndex) => (
-            <Droppable key={frameSetIndex} droppableId={`${frameSetIndex}`}>
+          {frameSets.map((table, tableIndex) => (
+            <Droppable key={tableIndex} droppableId={`${tableIndex}`}>
               {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
@@ -234,7 +234,7 @@ function DraggableTables2(props) {
                   className={css.group}
                   {...provided.droppableProps}
                 >
-                  {el.map((item, index) => (
+                  {table.map((item, index) => (
                     <Draggable
                       key={item.id}
                       draggableId={item.id}
@@ -245,7 +245,7 @@ function DraggableTables2(props) {
                           provided,
                           snapshot,
                           item,
-                          frameSetIndex,
+                          tableIndex,
                           index,
                         })
                       }
