@@ -1,138 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createDialogOrder = /* GraphQL */ `
-  mutation CreateDialogOrder(
-    $input: CreateDialogOrderInput!
-    $condition: ModelDialogOrderConditionInput
-  ) {
-    createDialogOrder(input: $input, condition: $condition) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateDialogOrder = /* GraphQL */ `
-  mutation UpdateDialogOrder(
-    $input: UpdateDialogOrderInput!
-    $condition: ModelDialogOrderConditionInput
-  ) {
-    updateDialogOrder(input: $input, condition: $condition) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteDialogOrder = /* GraphQL */ `
-  mutation DeleteDialogOrder(
-    $input: DeleteDialogOrderInput!
-    $condition: ModelDialogOrderConditionInput
-  ) {
-    deleteDialogOrder(input: $input, condition: $condition) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createFrameOrder = /* GraphQL */ `
-  mutation CreateFrameOrder(
-    $input: CreateFrameOrderInput!
-    $condition: ModelFrameOrderConditionInput
-  ) {
-    createFrameOrder(input: $input, condition: $condition) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frame {
-        id
-        name
-        framesetID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const updateFrameOrder = /* GraphQL */ `
-  mutation UpdateFrameOrder(
-    $input: UpdateFrameOrderInput!
-    $condition: ModelFrameOrderConditionInput
-  ) {
-    updateFrameOrder(input: $input, condition: $condition) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frame {
-        id
-        name
-        framesetID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const deleteFrameOrder = /* GraphQL */ `
-  mutation DeleteFrameOrder(
-    $input: DeleteFrameOrderInput!
-    $condition: ModelFrameOrderConditionInput
-  ) {
-    deleteFrameOrder(input: $input, condition: $condition) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frame {
-        id
-        name
-        framesetID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
 export const createCritter = /* GraphQL */ `
   mutation CreateCritter(
     $input: CreateCritterInput!
@@ -191,6 +59,7 @@ export const createDialog = /* GraphQL */ `
       text
       frameID
       name
+      order
       _version
       _deleted
       _lastChangedAt
@@ -218,6 +87,7 @@ export const updateDialog = /* GraphQL */ `
       text
       frameID
       name
+      order
       _version
       _deleted
       _lastChangedAt
@@ -245,6 +115,7 @@ export const deleteDialog = /* GraphQL */ `
       text
       frameID
       name
+      order
       _version
       _deleted
       _lastChangedAt
@@ -271,6 +142,7 @@ export const createFrame = /* GraphQL */ `
       id
       name
       framesetID
+      order
       _version
       _deleted
       _lastChangedAt
@@ -292,6 +164,7 @@ export const updateFrame = /* GraphQL */ `
       id
       name
       framesetID
+      order
       _version
       _deleted
       _lastChangedAt
@@ -313,6 +186,7 @@ export const deleteFrame = /* GraphQL */ `
       id
       name
       framesetID
+      order
       _version
       _deleted
       _lastChangedAt

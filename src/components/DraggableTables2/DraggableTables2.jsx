@@ -6,7 +6,7 @@ import { Button, ButtonGroup } from "react-bootstrap"
 import DragHandleIcon from "@material-ui/icons/DragHandle"
 import css from "./DraggableTables2.module.scss"
 
-import { createDialog } from "../../graphql/mutations"
+import { createDialog, updateDialog } from "../../graphql/mutations"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
 
@@ -25,6 +25,19 @@ const addDialog = async ({ item }) => {
   return test
 }
 
+const editDialog = async (item) => {
+  console.log("item", item) // zzz
+
+  // const { frameId } = item
+  // console.log("frameId", frameId) // zzz
+  // const newDialog = { frameID: frameId, text: "new dialog---" }
+
+  const test = await API.graphql(
+    graphqlOperation(updateDialog, { input: item })
+  )
+  return test
+}
+
 const getItems = (count, offset = 0) =>
   Array.from({ length: count }, (v, k) => k).map((k) => ({
     id: `item-${k + offset}-${new Date().getTime()}`,
@@ -35,6 +48,13 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
+
+  result.forEach((row, index) => {
+    if (row.order === undefined) {
+      console.log("row", row) // zzz
+      editDialog({ id: row.dialogId, order: index })
+    }
+  })
 
   return result
 }

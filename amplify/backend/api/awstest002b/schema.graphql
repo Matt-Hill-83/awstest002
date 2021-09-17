@@ -1,16 +1,3 @@
-type DialogOrder @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  order: String
-  ordering: [ID]
-}
-
-type FrameOrder @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  order: String
-  Frame: Frame @connection
-  ordering: [ID]
-}
-
 type Critter @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
@@ -22,6 +9,7 @@ type Dialog @model @auth(rules: [{allow: public}]) @key(name: "byFrame", fields:
   frameID: ID
   Critter: Critter @connection
   name: String
+  order: Int
 }
 
 type Frame @model @auth(rules: [{allow: public}]) @key(name: "byFrameSet", fields: ["framesetID"]) {
@@ -29,6 +17,7 @@ type Frame @model @auth(rules: [{allow: public}]) @key(name: "byFrameSet", field
   name: String
   framesetID: ID
   Dialogs: [Dialog] @connection(keyName: "byFrame", fields: ["id"])
+  order: Int
 }
 
 type FrameSet @model @auth(rules: [{allow: public}]) {

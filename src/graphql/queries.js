@@ -1,144 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getDialogOrder = /* GraphQL */ `
-  query GetDialogOrder($id: ID!) {
-    getDialogOrder(id: $id) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listDialogOrders = /* GraphQL */ `
-  query ListDialogOrders(
-    $filter: ModelDialogOrderFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listDialogOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        order
-        ordering
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncDialogOrders = /* GraphQL */ `
-  query SyncDialogOrders(
-    $filter: ModelDialogOrderFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncDialogOrders(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        order
-        ordering
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getFrameOrder = /* GraphQL */ `
-  query GetFrameOrder($id: ID!) {
-    getFrameOrder(id: $id) {
-      id
-      order
-      ordering
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      Frame {
-        id
-        name
-        framesetID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-    }
-  }
-`;
-export const listFrameOrders = /* GraphQL */ `
-  query ListFrameOrders(
-    $filter: ModelFrameOrderFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listFrameOrders(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        order
-        ordering
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncFrameOrders = /* GraphQL */ `
-  query SyncFrameOrders(
-    $filter: ModelFrameOrderFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncFrameOrders(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        order
-        ordering
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getCritter = /* GraphQL */ `
   query GetCritter($id: ID!) {
     getCritter(id: $id) {
@@ -207,6 +69,7 @@ export const getDialog = /* GraphQL */ `
       text
       frameID
       name
+      order
       _version
       _deleted
       _lastChangedAt
@@ -236,6 +99,7 @@ export const listDialogs = /* GraphQL */ `
         text
         frameID
         name
+        order
         _version
         _deleted
         _lastChangedAt
@@ -265,6 +129,7 @@ export const syncDialogs = /* GraphQL */ `
         text
         frameID
         name
+        order
         _version
         _deleted
         _lastChangedAt
@@ -282,6 +147,7 @@ export const getFrame = /* GraphQL */ `
       id
       name
       framesetID
+      order
       _version
       _deleted
       _lastChangedAt
@@ -305,6 +171,7 @@ export const listFrames = /* GraphQL */ `
         id
         name
         framesetID
+        order
         _version
         _deleted
         _lastChangedAt
@@ -333,6 +200,7 @@ export const syncFrames = /* GraphQL */ `
         id
         name
         framesetID
+        order
         _version
         _deleted
         _lastChangedAt

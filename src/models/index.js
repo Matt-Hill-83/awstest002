@@ -4,13 +4,11 @@ import { schema } from './schema';
 
 
 
-const { DialogOrder, FrameOrder, Frame, Dialog, Critter, FrameSet } = initSchema(schema);
+const { Critter, Dialog, Frame, FrameSet } = initSchema(schema);
 
 export {
-  DialogOrder,
-  FrameOrder,
-  Frame,
-  Dialog,
   Critter,
+  Dialog,
+  Frame,
   FrameSet
 };

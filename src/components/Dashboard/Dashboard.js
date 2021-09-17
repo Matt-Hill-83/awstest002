@@ -51,6 +51,8 @@ function Dashboard() {
         dialogs.forEach((dialog) => {
           const newDialog = {
             id: dialog.id,
+            order: dialog.order,
+            dialogId: dialog.id,
             frameSet: frameSet.name,
             frame: frame.name,
             frameId: frame.id,
