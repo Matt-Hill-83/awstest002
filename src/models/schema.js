@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Critter": {
-            "name": "Critter",
+        "DialogOrder": {
+            "name": "DialogOrder",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,12 +10,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "order": {
+                    "name": "order",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "ordering": {
+                    "name": "ordering",
+                    "isArray": true,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -35,7 +43,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Critters",
+            "pluralName": "DialogOrders",
             "attributes": [
                 {
                     "type": "model",
@@ -59,8 +67,8 @@ export const schema = {
                 }
             ]
         },
-        "Dialog": {
-            "name": "Dialog",
+        "FrameOrder": {
+            "name": "FrameOrder",
             "fields": {
                 "id": {
                     "name": "id",
@@ -69,32 +77,33 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "text": {
-                    "name": "text",
+                "order": {
+                    "name": "order",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "frameID": {
-                    "name": "frameID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "Critter": {
-                    "name": "Critter",
+                "Frame": {
+                    "name": "Frame",
                     "isArray": false,
                     "type": {
-                        "model": "Critter"
+                        "model": "Frame"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "dialogCritterId"
+                        "targetName": "frameOrderFrameId"
                     }
+                },
+                "ordering": {
+                    "name": "ordering",
+                    "isArray": true,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -114,20 +123,11 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Dialogs",
+            "pluralName": "FrameOrders",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byFrame",
-                        "fields": [
-                            "frameID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -236,6 +236,160 @@ export const schema = {
                 }
             ]
         },
+        "Dialog": {
+            "name": "Dialog",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "text": {
+                    "name": "text",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "frameID": {
+                    "name": "frameID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Critter": {
+                    "name": "Critter",
+                    "isArray": false,
+                    "type": {
+                        "model": "Critter"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "dialogCritterId"
+                    }
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Dialogs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byFrame",
+                        "fields": [
+                            "frameID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Critter": {
+            "name": "Critter",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "Critters",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "FrameSet": {
             "name": "FrameSet",
             "fields": {
@@ -312,5 +466,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "bf23ca4092688ab987b10e8d128e0da2"
+    "version": "f352def1abbb2a66cc8efdb3cd23b34f"
 };

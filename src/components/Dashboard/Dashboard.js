@@ -40,8 +40,6 @@ function Dashboard() {
     setRowData(parsedFrameSets)
   }
 
-  // TODO : parse GQL into
-
   const parseFrameSets = (items = []) => {
     const output = []
     items.forEach((frameSet) => {

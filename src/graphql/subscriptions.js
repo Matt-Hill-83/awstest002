@@ -1,6 +1,120 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateDialogOrder = /* GraphQL */ `
+  subscription OnCreateDialogOrder {
+    onCreateDialogOrder {
+      id
+      order
+      ordering
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateDialogOrder = /* GraphQL */ `
+  subscription OnUpdateDialogOrder {
+    onUpdateDialogOrder {
+      id
+      order
+      ordering
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteDialogOrder = /* GraphQL */ `
+  subscription OnDeleteDialogOrder {
+    onDeleteDialogOrder {
+      id
+      order
+      ordering
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateFrameOrder = /* GraphQL */ `
+  subscription OnCreateFrameOrder {
+    onCreateFrameOrder {
+      id
+      order
+      ordering
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Frame {
+        id
+        name
+        framesetID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onUpdateFrameOrder = /* GraphQL */ `
+  subscription OnUpdateFrameOrder {
+    onUpdateFrameOrder {
+      id
+      order
+      ordering
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Frame {
+        id
+        name
+        framesetID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
+export const onDeleteFrameOrder = /* GraphQL */ `
+  subscription OnDeleteFrameOrder {
+    onDeleteFrameOrder {
+      id
+      order
+      ordering
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      Frame {
+        id
+        name
+        framesetID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`;
 export const onCreateCritter = /* GraphQL */ `
   subscription OnCreateCritter {
     onCreateCritter {
@@ -46,6 +160,7 @@ export const onCreateDialog = /* GraphQL */ `
       id
       text
       frameID
+      name
       _version
       _deleted
       _lastChangedAt
@@ -69,6 +184,7 @@ export const onUpdateDialog = /* GraphQL */ `
       id
       text
       frameID
+      name
       _version
       _deleted
       _lastChangedAt
@@ -92,6 +208,7 @@ export const onDeleteDialog = /* GraphQL */ `
       id
       text
       frameID
+      name
       _version
       _deleted
       _lastChangedAt

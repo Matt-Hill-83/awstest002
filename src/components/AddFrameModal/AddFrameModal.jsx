@@ -44,6 +44,13 @@ export default function AddFrameModal(props) {
   const renderForm = () => {
     return (
       <Form className="baseForm">
+        <SelectFormik name="courseAssignmentId" label="Course Assignment">
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </SelectFormik>
         <FormGroup controlId="name">
           <FormLabel htmlFor="name">Name</FormLabel>
           <Field name="name" className="form-control" type="text" />
@@ -53,13 +60,6 @@ export default function AddFrameModal(props) {
           component={CustomInputComponent}
           placeholder="First Name"
         />
-        <SelectFormik name="courseAssignmentId" label="Course Assignment">
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </SelectFormik>
         <Button type="submit">Submit</Button>
       </Form>
     )
