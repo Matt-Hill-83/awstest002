@@ -71,7 +71,9 @@ function Dashboard() {
       const frames = frameSet.Frames?.items || []
       frames.forEach((frame) => {
         const newFrame = []
-        const dialogs = frame?.Dialogs?.items || []
+        let dialogs = frame?.Dialogs?.items || []
+
+        dialogs = dialogs.filter((item) => !item._deleted)
 
         dialogs.forEach((dialog) => {
           const newDialog = {

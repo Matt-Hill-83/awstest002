@@ -20,6 +20,7 @@ export const listFrameSets2 = /* GraphQL */ `
                 text
                 order
                 _version
+                _deleted
               }
             }
             id

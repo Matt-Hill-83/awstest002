@@ -6,7 +6,11 @@ import { Button, ButtonGroup } from "react-bootstrap"
 import DragHandleIcon from "@material-ui/icons/DragHandle"
 import css from "./DraggableTables2.module.scss"
 
-import { createDialog, updateDialog } from "../../graphql/mutations"
+import {
+  createDialog,
+  deleteDialog,
+  updateDialog,
+} from "../../graphql/mutations"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
 
@@ -136,18 +140,17 @@ function DraggableTables2(props) {
     setFrameSets([...frameSets, getItems(1)])
   }
 
-  const addRowBefore = () => {
-    setFrameSets([...frameSets, getItems(1)])
-  }
+  const deleteItem = async (item) => {
+    const { dialogId, dialogVersion } = item
 
-  const addRowAfter = () => {
-    setFrameSets([...frameSets, getItems(1)])
-  }
+    const input = { id: dialogId, _version: dialogVersion }
 
-  const deleteItem = ({ tableIndex, rowIndex }) => {
-    const newState = [...frameSets]
-    newState[tableIndex].splice(rowIndex, 1)
-    setFrameSets(newState.filter((group) => group.length))
+    console.log("input", input) // zzz
+    const test = await API.graphql(
+      graphqlOperation(deleteDialog, { input })
+      // graphqlOperation(updateDialog, { input: item })
+    )
+    return test
   }
 
   const addGroup = () => {
@@ -159,6 +162,14 @@ function DraggableTables2(props) {
       <ButtonGroup className={css.buttonGroup}>
         <Button onClick={addItem}>+ item</Button>
         <Button onClick={addGroup}>+ group</Button>
+        <Button
+          className={css.deleteButton}
+          // onClick={() => {
+          //   addRowBefore({ tableIndex, rowIndex })
+          // }}
+        >
+          <i class="bi bi-plus" />
+        </Button>
       </ButtonGroup>
     )
   }
@@ -174,8 +185,6 @@ function DraggableTables2(props) {
       >
         <DragHandleIcon className={css.dragger} />
         <div className={css.rowContent}>
-          {/* <i class="bi bi-justify"></i> */}
-          {/* <div className={css.cell}>{item.frameSet}</div> */}
           <div className={css.cell} style={{ width: "20px" }}>
             {item.frame}
           </div>
@@ -193,26 +202,19 @@ function DraggableTables2(props) {
             <Button
               className={css.deleteButton}
               onClick={() => {
-                deleteItem({ tableIndex, rowIndex })
+                deleteItem(item)
               }}
             >
               <i class="bi bi-trash" />
             </Button>
-            <Button
-              className={css.deleteButton}
-              onClick={() => {
-                addRowBefore({ tableIndex, rowIndex })
-              }}
-            >
-              <i class="bi bi-plus" />
-            </Button>
+
             <Button
               className={css.deleteButton}
               onClick={() => {
                 addDialog({ item, tableIndex, rowIndex })
               }}
             >
-              <i class="bi bi-alarm" />
+              <i class="bi bi-plus" />
             </Button>
           </ButtonGroup>
         </div>
