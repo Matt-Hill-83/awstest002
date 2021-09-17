@@ -50,16 +50,11 @@ const reorder = (list, startIndex, endIndex) => {
 
   result.forEach((row, index) => {
     console.log("row.order", row.order) // zzz
-    // if (row.order === undefined || row.order === null || row.order === 2) {
-    //   console.log("row", row) // zzz
-    //   editDialog({
-    //     id: row.dialogId,
-    //     order: index,
-    //     text: row.text + index,
-    //     _version: row.dialogVersion,
-    //   })
-    // }
-    if (row.prevOrder !== index) {
+    if (
+      row.order === undefined ||
+      row.order === null ||
+      row.prevOrder !== index
+    ) {
       console.log("row.prevOrder", row.prevOrder) // zzz
       console.log("index", index) // zzz
       console.log("row+++", row) // zzz

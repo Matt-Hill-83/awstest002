@@ -37,7 +37,7 @@ function Dashboard() {
     ).subscribe({
       next: ({ _, value }) => {
         console.log("onUpdateDialog") // zzz
-        // fetchFrameSets()
+        fetchFrameSets()
       },
     })
 
