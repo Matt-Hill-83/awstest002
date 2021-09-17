@@ -14,28 +14,14 @@ import {
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
 
-const addDialog = async ({ item, rowIndex, tableIndex }) => {
-  console.log("rowIndex", rowIndex) // zzz
-  console.log("tableIndex", tableIndex) // zzz
-  console.log("item", item) // zzz
-
+const addDialog = async ({ item, rowIndex }) => {
   const { frameId } = item
-  console.log("frameId", frameId) // zzz
   const newDialog = { frameID: frameId, text: "new dialog-", order: rowIndex }
-
-  const test = await API.graphql(
-    graphqlOperation(createDialog, { input: newDialog })
-  )
-  return test
+  API.graphql(graphqlOperation(createDialog, { input: newDialog }))
 }
 
 const editDialog = async (item) => {
-  console.log("item", item) // zzz
-
-  const test = await API.graphql(
-    graphqlOperation(updateDialog, { input: item })
-  )
-  return test
+  API.graphql(graphqlOperation(updateDialog, { input: item }))
 }
 
 const getItems = (count, offset = 0) =>
@@ -45,7 +31,7 @@ const getItems = (count, offset = 0) =>
   }))
 
 const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list)
+  let result = Array.from(list)
 
   result.forEach((row, index) => {
     row.prevOrder = index
@@ -54,12 +40,14 @@ const reorder = (list, startIndex, endIndex) => {
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
 
-  result.forEach((row, index) => {
-    if (
-      row.order === undefined ||
-      row.order === null ||
-      row.prevOrder !== index
-    ) {
+  result = resetIndices(result)
+  return result
+}
+
+const resetIndices = (list) => {
+  list.forEach((row, index) => {
+    if (row.order !== index) {
+      row.order = index
       editDialog({
         id: row.dialogId,
         order: index,
@@ -68,7 +56,7 @@ const reorder = (list, startIndex, endIndex) => {
     }
   })
 
-  return result
+  return list
 }
 
 const move = (source, destination, droppableSource, droppableDestination) => {
