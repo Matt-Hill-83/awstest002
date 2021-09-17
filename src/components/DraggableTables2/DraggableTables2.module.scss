@@ -30,9 +30,13 @@
     padding: 0px, 5px;
 
     .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid red !important;
       width: 100px;
       margin-right: 10px;
+      min-height: 28px;
     }
   }
 
