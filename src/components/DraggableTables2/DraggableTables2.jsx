@@ -15,7 +15,7 @@ const addDialog = async ({ item }) => {
 
   const { frameId } = item
   console.log("frameId", frameId) // zzz
-  const newDialog = { frameID: frameId, text: "new dialog---" }
+  const newDialog = { frameID: frameId, text: "new dialog--x-" }
 
   const test = await API.graphql(
     graphqlOperation(createDialog, { input: newDialog })
@@ -40,13 +40,36 @@ const getItems = (count, offset = 0) =>
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
+
+  result.forEach((row, index) => {
+    row.prevOrder = index
+  })
+
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
 
   result.forEach((row, index) => {
-    if (row.order === undefined) {
-      console.log("row", row) // zzz
-      editDialog({ id: row.dialogId, order: index })
+    console.log("row.order", row.order) // zzz
+    // if (row.order === undefined || row.order === null || row.order === 2) {
+    //   console.log("row", row) // zzz
+    //   editDialog({
+    //     id: row.dialogId,
+    //     order: index,
+    //     text: row.text + index,
+    //     _version: row.dialogVersion,
+    //   })
+    // }
+    if (row.prevOrder !== index) {
+      console.log("row.prevOrder", row.prevOrder) // zzz
+      console.log("index", index) // zzz
+      console.log("row+++", row) // zzz
+
+      editDialog({
+        id: row.dialogId,
+        order: index,
+        text: row.text + index,
+        _version: row.dialogVersion,
+      })
     }
   })
 
@@ -205,7 +228,7 @@ function DraggableTables2(props) {
       </div>
     )
   }
-
+  console.log("render draggable tables++++++++++++++++++++++++++++++++++++++++") // zzz
   return (
     <div className={css.main}>
       {renderHeaderButtons()}

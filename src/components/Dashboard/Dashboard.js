@@ -3,7 +3,11 @@ import { graphqlOperation } from "@aws-amplify/api-graphql"
 import { useEffect, useState } from "react"
 import { ButtonGroup } from "react-bootstrap"
 
-import { onCreateFrameSet, onUpdateDialog } from "../../graphql/subscriptions"
+import {
+  onCreateDialog,
+  onCreateFrameSet,
+  onUpdateDialog,
+} from "../../graphql/subscriptions"
 import { listFrameSets2 } from "../../myQraphql/myQueries"
 
 import AddFrameModal from "../AddFrameModal/AddFrameModal"
@@ -37,9 +41,19 @@ function Dashboard() {
       },
     })
 
+    const createDialog = API.graphql(
+      graphqlOperation(onCreateDialog)
+    ).subscribe({
+      next: ({ _, value }) => {
+        console.log("createDialog") // zzz
+        fetchFrameSets()
+      },
+    })
+
     return () => {
       createFrameSet.unsubscribe()
       updateDialog.unsubscribe()
+      createDialog.unsubscribe()
     }
   }, [])
 
@@ -64,6 +78,7 @@ function Dashboard() {
             id: dialog.id,
             order: dialog.order,
             dialogId: dialog.id,
+            dialogVersion: dialog._version,
             frameSet: frameSet.name,
             frame: frame.name,
             frameId: frame.id,
@@ -71,6 +86,9 @@ function Dashboard() {
             critter: dialog?.Critter?.name,
           }
           newFrame.push(newDialog)
+        })
+        newFrame.sort(function (a, b) {
+          return a.order - b.order
         })
         output.push(newFrame)
       })
