@@ -49,20 +49,14 @@ const reorder = (list, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed)
 
   result.forEach((row, index) => {
-    console.log("row.order", row.order) // zzz
     if (
       row.order === undefined ||
       row.order === null ||
       row.prevOrder !== index
     ) {
-      console.log("row.prevOrder", row.prevOrder) // zzz
-      console.log("index", index) // zzz
-      console.log("row+++", row) // zzz
-
       editDialog({
         id: row.dialogId,
         order: index,
-        text: row.text + index,
         _version: row.dialogVersion,
       })
     }
