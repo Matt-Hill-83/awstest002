@@ -10,8 +10,6 @@ import { createDialog, updateDialog } from "../../graphql/mutations"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
 
-// fake data generator
-
 const addDialog = async ({ item }) => {
   console.log("item", item) // zzz
 
@@ -27,10 +25,6 @@ const addDialog = async ({ item }) => {
 
 const editDialog = async (item) => {
   console.log("item", item) // zzz
-
-  // const { frameId } = item
-  // console.log("frameId", frameId) // zzz
-  // const newDialog = { frameID: frameId, text: "new dialog---" }
 
   const test = await API.graphql(
     graphqlOperation(updateDialog, { input: item })
@@ -167,10 +161,19 @@ function DraggableTables2(props) {
         <DragHandleIcon className={css.dragger} />
         <div className={css.rowContent}>
           {/* <i class="bi bi-justify"></i> */}
-          <div className={css.cell}>{item.frameSet}</div>
-          <div className={css.cell}>{item.frame}</div>
-          <div className={css.cell}>{item.critter}</div>
-          <div className={css.cell}>{item.text}</div>
+          {/* <div className={css.cell}>{item.frameSet}</div> */}
+          <div className={css.cell} style={{ width: "20px" }}>
+            {item.frame}
+          </div>
+          <div className={css.cell} style={{ width: "20px" }}>
+            {item.order}
+          </div>
+          <div className={css.cell} style={{ width: "80px" }}>
+            {item.critter}
+          </div>
+          <div className={css.cell} style={{ width: "120px" }}>
+            {item.text}
+          </div>
           <input></input>
           <ButtonGroup className={css.rowButtons}>
             <Button

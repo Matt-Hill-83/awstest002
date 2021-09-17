@@ -3,7 +3,7 @@ import { graphqlOperation } from "@aws-amplify/api-graphql"
 import { useEffect, useState } from "react"
 import { ButtonGroup } from "react-bootstrap"
 
-import { onCreateFrameSet } from "../../graphql/subscriptions"
+import { onCreateFrameSet, onUpdateDialog } from "../../graphql/subscriptions"
 import { listFrameSets2 } from "../../myQraphql/myQueries"
 
 import AddFrameModal from "../AddFrameModal/AddFrameModal"
@@ -28,8 +28,18 @@ function Dashboard() {
       },
     })
 
+    const updateDialog = API.graphql(
+      graphqlOperation(onUpdateDialog)
+    ).subscribe({
+      next: ({ _, value }) => {
+        console.log("onUpdateDialog") // zzz
+        // fetchFrameSets()
+      },
+    })
+
     return () => {
       createFrameSet.unsubscribe()
+      updateDialog.unsubscribe()
     }
   }, [])
 
@@ -42,6 +52,7 @@ function Dashboard() {
 
   const parseFrameSets = (items = []) => {
     const output = []
+    console.log("items", items) // zzz
     items.forEach((frameSet) => {
       const frames = frameSet.Frames?.items || []
       frames.forEach((frame) => {
