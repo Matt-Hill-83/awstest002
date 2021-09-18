@@ -6,6 +6,7 @@ import { ButtonGroup } from "react-bootstrap"
 import {
   onCreateDialog,
   onCreateFrameSet,
+  onDeleteDialog,
   onUpdateDialog,
 } from "../../graphql/subscriptions"
 import { listFrameSets2 } from "../../myQraphql/myQueries"
@@ -50,10 +51,20 @@ function Dashboard() {
       },
     })
 
+    const deleteDialog = API.graphql(
+      graphqlOperation(onDeleteDialog)
+    ).subscribe({
+      next: ({ _, value }) => {
+        console.log("deleteDialog") // zzz
+        fetchFrameSets()
+      },
+    })
+
     return () => {
       createFrameSet.unsubscribe()
       updateDialog.unsubscribe()
       createDialog.unsubscribe()
+      deleteDialog.unsubscribe()
     }
   }, [])
 

@@ -21,6 +21,7 @@ const addDialog = async ({ item, rowIndex }) => {
 }
 
 const editDialog = async (item) => {
+  console.log("editDialog") // zzz
   API.graphql(graphqlOperation(updateDialog, { input: item }))
 }
 
@@ -45,9 +46,13 @@ const reorder = (list, startIndex, endIndex) => {
 }
 
 const resetIndices = (list) => {
+  console.log("resetIndices") // zzz
+  console.log("list", list) // zzz
+
   list.forEach((row, index) => {
     if (row.order !== index) {
       row.order = index
+      console.log("row", row) // zzz
       editDialog({
         id: row.dialogId,
         order: index,
@@ -96,7 +101,10 @@ function DraggableTables2(props) {
   const [frameSets, setFrameSets] = useState([getItems(10), getItems(5, 10)])
 
   useEffect(() => {
-    setFrameSets(props.frameSets)
+    const transformedFrameSets = props.frameSets.map((frameSet) => {
+      return resetIndices(frameSet)
+    })
+    setFrameSets(transformedFrameSets)
   }, [props.frameSets])
 
   function onDragEnd(result) {
@@ -134,10 +142,8 @@ function DraggableTables2(props) {
     const input = { id: dialogId, _version: dialogVersion }
 
     console.log("input", input) // zzz
-    const test = await API.graphql(
-      graphqlOperation(deleteDialog, { input })
-      // graphqlOperation(updateDialog, { input: item })
-    )
+    const test = await API.graphql(graphqlOperation(deleteDialog, { input }))
+
     return test
   }
 
