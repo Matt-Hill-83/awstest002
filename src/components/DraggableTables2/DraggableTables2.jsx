@@ -149,13 +149,21 @@ function DraggableTables2(props) {
       console.log("removed", removed) // zzz
       console.log("sourceObjClone", sourceObjClone) // zzz
 
+      removed.frameId = destObjClone.frameId
+
       editDialog({
         id: removed.dialogId,
         order: destDialogInd,
         frameID: destObjClone.frameId,
         _version: removed.dialogVersion,
       })
+      removed.dialogVersion = removed.dialogVersion + 1
+
+      resetIndices(sourceDialogs)
+      resetIndices(destDialogs)
+
       console.log("newState", newState) // zzz
+      refetchData()
       setFrameSets(newState)
     }
   }
