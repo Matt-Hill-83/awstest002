@@ -13,8 +13,9 @@ import {
 } from "../../graphql/mutations"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
-import { Input } from "reactstrap"
+
 import MyInput from "../MyInput/MyInput"
+import MyMultiSelect from "../MyMultiSelect/MyMultiSelect"
 
 const addDialog = async ({ item, rowIndex }) => {
   const { frameId } = item
@@ -212,6 +213,33 @@ function DraggableTables2(props) {
       })
     }
 
+    const updateRestaurant = (newValue) => {
+      console.log("newValue", newValue) // zzz
+    }
+
+    const RestaurantNames = {
+      CHILLIS: "Chilli's",
+      APPLEBEES: "Applebees",
+      BURGERKING: "Burger King",
+      DOUNTSHOPPE: "Donut Shoppe",
+    }
+
+    const restaurantList = [
+      { title: RestaurantNames.APPLEBEES },
+      { title: RestaurantNames.BURGERKING },
+      { title: RestaurantNames.CHILLIS },
+      { title: RestaurantNames.DOUNTSHOPPE },
+    ]
+
+    const multiSelectProps = {
+      inputWidth: 200,
+      initialValue: restaurantList[0].title,
+      listItems: restaurantList,
+      className: css.multiPicker,
+
+      onChange: (newValue) => updateRestaurant({ newValue }),
+    }
+
     return (
       <div
         ref={provided.innerRef}
@@ -231,9 +259,7 @@ function DraggableTables2(props) {
           <div className={css.cell} style={{ width: "80px" }}>
             {item.critter}
           </div>
-          <div className={css.cell} style={{ width: "120px" }}>
-            {item.text}
-          </div>
+          <MyMultiSelect {...multiSelectProps} />
           <MyInput
             type="text"
             value={item.text}
@@ -241,7 +267,6 @@ function DraggableTables2(props) {
             style={{ width: "120px" }}
             onBlur={onBlurText}
           />
-          <input></input>
           <ButtonGroup className={css.rowButtons}>
             <Button
               className={css.deleteButton}

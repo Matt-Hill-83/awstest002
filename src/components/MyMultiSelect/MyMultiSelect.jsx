@@ -20,7 +20,7 @@ export default function MyMultiSelect(props) {
 
   const localOnChange = (event, newValue) => {
     setValue(newValue)
-    onChange?.(newValue)
+    // onChange?.(newValue)
   }
 
   return (
