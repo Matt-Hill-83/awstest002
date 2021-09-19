@@ -66,24 +66,6 @@ const resetIndices = (list) => {
   return list
 }
 
-const move = (source, destination, droppableSource, droppableDestination) => {
-  console.log("droppableDestination", droppableDestination) // zzz
-  console.log("move") // zzz
-  const sourceClone = Array.from(source)
-  const destClone = Array.from(destination)
-  const [removed] = sourceClone.splice(droppableSource.index, 1)
-
-  destClone.splice(droppableDestination.index, 0, removed)
-
-  const result = {}
-  result[droppableSource.droppableId] = sourceClone
-  result[droppableDestination.droppableId] = destClone
-
-  console.log("droppableId", droppableDestination.droppableId) // zzz
-  console.log("source", source) // zzz
-  return result
-}
-
 const getItemStyle = (isDragging, draggableStyle) => {
   const styles = {
     // some basic styles to make the items look a bit nicer
@@ -146,13 +128,54 @@ function DraggableTables2(props) {
 
       resetIndices(thisFrame.dialogs)
     } else {
-      const result = move(frameSet[sInd], frameSet[dInd], source, destination)
-      const newState = [...frameSet]
-      newState[sInd] = result[sInd]
-      newState[dInd] = result[dInd]
+      const result = move({
+        sourceObj: frameSet[sInd],
+        destObj: frameSet[dInd],
+        droppableSource: source,
+        droppableDestination: destination,
+      })
 
-      setFrameSets(newState.filter((group) => group.length))
+      console.log("result--------111111-----------------------", result) // zzz
+      const newState = [...frameSet]
+      newState[sInd] = result.sourceClone
+      newState[dInd] = result.destClone
+      // newState[sInd] = result[sInd]
+      // newState[dInd] = result[dInd]
+
+      setFrameSets(newState.filter((group) => group.dialogs.length))
     }
+  }
+
+  const move = ({
+    sourceObj,
+    destObj,
+    droppableSource,
+    droppableDestination,
+  }) => {
+    // const move = (source, destObj, droppableSource, droppableDestination) => {
+
+    console.log("droppableDestination", droppableDestination) // zzz
+    console.log("move") // zzz
+    const sourceClone = { ...sourceObj }
+    const destClone = { ...destObj }
+    // const sourceClone = Array.from(sourceObj)
+    // const destClone = Array.from(destObj)
+    const [removed] = sourceClone.dialogs.splice(droppableSource.index, 1)
+    // const [removed] = sourceClone.splice(droppableSource.index, 1)
+
+    destClone.dialogs.splice(droppableDestination.index, 0, removed)
+    // destClone.splice(droppableDestination.index, 0, removed)
+
+    const result = {}
+
+    // result[droppableSource.droppableId] = sourceClone
+    // result[droppableDestination.droppableId] = destClone
+
+    console.log("droppableId", droppableDestination.droppableId) // zzz
+    console.log("sourceObj", sourceObj) // zzz
+    return { sourceClone, destClone }
+
+    // return result
   }
 
   const addItem = () => {
@@ -252,6 +275,7 @@ function DraggableTables2(props) {
         <DragDropContext onDragEnd={onDragEnd}>
           {/* Create a Drop Zone for each FrameSet */}
           {frameSet.map((frame, tableIndex) => {
+            console.log("frame", frame) // zzz
             const dialogs = frame?.dialogs || []
 
             return (

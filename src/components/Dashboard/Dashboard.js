@@ -88,8 +88,8 @@ function Dashboard() {
           frameSetId: frameSet.id,
           dialogs: [],
         }
-        let dialogs = frame?.Dialogs?.items || []
 
+        let dialogs = frame?.Dialogs?.items || []
         dialogs = dialogs.filter((item) => !item._deleted)
 
         dialogs.forEach((dialog) => {
