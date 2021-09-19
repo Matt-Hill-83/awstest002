@@ -13,6 +13,8 @@ import {
 } from "../../graphql/mutations"
 import { graphqlOperation } from "@aws-amplify/api-graphql"
 import API from "@aws-amplify/api"
+import { Input } from "reactstrap"
+import MyInput from "../MyInput/MyInput"
 
 const addDialog = async ({ item, rowIndex }) => {
   const { frameId } = item
@@ -199,6 +201,17 @@ function DraggableTables2(props) {
   }
 
   const getRow = ({ provided, snapshot, item, tableIndex, rowIndex }) => {
+    const onBlurText = (e) => {
+      console.log("etarget", e.target.value) // zzz
+      const { dialogId } = item
+      console.log("item", item) // zzz
+      editDialog({
+        id: dialogId,
+        text: e.target.value,
+        _version: item.dialogVersion,
+      })
+    }
+
     return (
       <div
         ref={provided.innerRef}
@@ -221,6 +234,13 @@ function DraggableTables2(props) {
           <div className={css.cell} style={{ width: "120px" }}>
             {item.text}
           </div>
+          <MyInput
+            type="text"
+            value={item.text}
+            className={css.cell}
+            style={{ width: "120px" }}
+            onBlur={onBlurText}
+          />
           <input></input>
           <ButtonGroup className={css.rowButtons}>
             <Button
