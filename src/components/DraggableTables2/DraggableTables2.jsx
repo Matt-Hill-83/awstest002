@@ -22,7 +22,8 @@ const addDialog = async ({ item, rowIndex }) => {
 
 const editDialog = async (item) => {
   console.log("editDialog") // zzz
-  API.graphql(graphqlOperation(updateDialog, { input: item }))
+  const response = API.graphql(graphqlOperation(updateDialog, { input: item }))
+  return response
 }
 
 const getItems = (count, offset = 0) =>
@@ -107,7 +108,7 @@ function DraggableTables2(props) {
     setFrameSets(frameSet)
   }, [props.frameSet])
 
-  function onDragEnd(result) {
+  async function onDragEnd(result) {
     const { source, destination } = result
     console.log("result", result) // zzz
 
@@ -146,12 +147,14 @@ function DraggableTables2(props) {
 
       removed.frameId = destObjClone.frameId
 
-      editDialog({
+      const test = await editDialog({
         id: removed.dialogId,
         order: destDialogInd,
         frameID: destObjClone.frameId,
         _version: removed.dialogVersion,
       })
+
+      console.log("test", test) // zzz
 
       // update dialogVersion to item will update again when you reset indices
       removed.dialogVersion = removed.dialogVersion + 1
@@ -160,7 +163,7 @@ function DraggableTables2(props) {
       resetIndices(destDialogs)
 
       refetchData()
-      setFrameSets(newState)
+      // setFrameSets(newState)
     }
   }
 
