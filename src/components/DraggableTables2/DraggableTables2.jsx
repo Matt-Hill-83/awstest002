@@ -41,7 +41,7 @@ const reorder = (list, startIndex, endIndex) => {
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
 
-  result = resetIndices(result)
+  // result = resetIndices(result)
   return result
 }
 
@@ -67,6 +67,7 @@ const resetIndices = (list) => {
 }
 
 const move = (source, destination, droppableSource, droppableDestination) => {
+  console.log("move") // zzz
   const sourceClone = Array.from(source)
   const destClone = Array.from(destination)
   const [removed] = sourceClone.splice(droppableSource.index, 1)
@@ -100,8 +101,6 @@ const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
 })
 
-const droppableIdMap = {}
-
 function DraggableTables2(props) {
   const [frameSets, setFrameSets] = useState([])
   console.log("frameSets=============================", frameSets) // zzz
@@ -110,15 +109,14 @@ function DraggableTables2(props) {
     console.log("props.frameSets", props.frameSets) // zzz
 
     const frameSets = props.frameSets || []
-    // frameSets.forEach((frameSet) => {
-    //   const dialogs = frameSet.dialogs || []
+    frameSets.forEach((frameSet) => {
+      const dialogs = frameSet.dialogs || []
 
-    //   resetIndices(dialogs)
-    // })
+      resetIndices(dialogs)
+    })
     // TODO: if they are reset, don't set the inital data
     // TODO: if they are reset, don't set the inital data
     setFrameSets(frameSets)
-    // setFrameSets([frameSets[0]?.dialogs || []])
   }, [props.frameSets])
 
   function onDragEnd(result) {
@@ -133,10 +131,15 @@ function DraggableTables2(props) {
     const dInd = +destination.droppableId
 
     if (sInd === dInd) {
-      const items = reorder(frameSets[sInd], source.index, destination.index)
       const newState = [...frameSets]
-      newState[sInd] = items
+      const thisFrame = newState[sInd]
+      const dialogs = thisFrame.dialogs || []
+
+      const items = reorder(dialogs, source.index, destination.index)
+      thisFrame.dialogs = items
       setFrameSets(newState)
+
+      resetIndices(thisFrame.dialogs)
     } else {
       const result = move(frameSets[sInd], frameSets[dInd], source, destination)
       const newState = [...frameSets]
@@ -236,6 +239,7 @@ function DraggableTables2(props) {
       {renderHeaderButtons()}
       <div className={css.groupContainer}>
         <DragDropContext onDragEnd={onDragEnd}>
+          {/* Create a Drop Zone for each FrameSet */}
           {frameSets.map((table, tableIndex) => {
             const table2 = table?.dialogs || []
 
@@ -248,23 +252,33 @@ function DraggableTables2(props) {
                     className={css.group}
                     {...provided.droppableProps}
                   >
-                    {table2.map((item, rowIndex) => (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id}
-                        index={rowIndex}
-                      >
-                        {(provided, snapshot) =>
-                          getRow({
-                            provided,
-                            snapshot,
-                            item,
-                            tableIndex,
-                            rowIndex,
-                          })
-                        }
-                      </Draggable>
-                    ))}
+                    {/* Create a draggable item for each row in FrameSet */}
+                    {table2.map((item, rowIndex) => {
+                      const frameId = table.frameId
+
+                      console.log(
+                        "frameId----------------------------",
+                        frameId
+                      ) // zzz
+
+                      return (
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={rowIndex}
+                        >
+                          {(provided, snapshot) =>
+                            getRow({
+                              provided,
+                              snapshot,
+                              item,
+                              tableIndex,
+                              rowIndex,
+                            })
+                          }
+                        </Draggable>
+                      )
+                    })}
                     {provided.placeholder}
                   </div>
                 )}
