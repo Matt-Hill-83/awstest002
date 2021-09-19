@@ -128,17 +128,27 @@ function DraggableTables2(props) {
 
       resetIndices(thisFrame.dialogs)
     } else {
-      const result = move({
-        sourceObj: frameSet[sInd],
-        destObj: frameSet[dInd],
-        droppableSource: source,
-        droppableDestination: destination,
-      })
+      // const result = move({
+      //   sourceObj: frameSet[sInd],
+      //   destObj: frameSet[dInd],
+      //   // droppableSource: source,
+      //   // droppableDestination: destination,
+      // })
+      // const sourceObj = frameSet[sInd]
+      // const destObj = frameSet[dInd]
+      // const droppableSource = source
+      // const droppableDestination = destination
 
-      console.log("result--------111111-----------------------", result) // zzz
+      const sourceClone = { ...frameSet[sInd] }
+      const destClone = { ...frameSet[dInd] }
+
+      const [removed] = sourceClone.dialogs.splice(source.index, 1)
+      destClone.dialogs.splice(destination.index, 0, removed)
+
+      // console.log("result--------111111-----------------------", result) // zzz
       const newState = [...frameSet]
-      newState[sInd] = result.sourceClone
-      newState[dInd] = result.destClone
+      newState[sInd] = sourceClone
+      newState[dInd] = destClone
 
       setFrameSets(newState)
     }
@@ -167,13 +177,8 @@ function DraggableTables2(props) {
 
   const deleteItem = async (item) => {
     const { dialogId, dialogVersion } = item
-
     const input = { id: dialogId, _version: dialogVersion }
-
-    console.log("input", input) // zzz
-    const test = await API.graphql(graphqlOperation(deleteDialog, { input }))
-
-    return test
+    await API.graphql(graphqlOperation(deleteDialog, { input }))
   }
 
   const addGroup = () => {
