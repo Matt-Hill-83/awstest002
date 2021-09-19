@@ -67,6 +67,7 @@ const resetIndices = (list) => {
 }
 
 const move = (source, destination, droppableSource, droppableDestination) => {
+  console.log("droppableDestination", droppableDestination) // zzz
   console.log("move") // zzz
   const sourceClone = Array.from(source)
   const destClone = Array.from(destination)
@@ -78,6 +79,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   result[droppableSource.droppableId] = sourceClone
   result[droppableDestination.droppableId] = destClone
 
+  console.log("droppableId", droppableDestination.droppableId) // zzz
   console.log("source", source) // zzz
   return result
 }
@@ -101,23 +103,26 @@ const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
 })
 
+let frameToDroppableIdMap = {}
+
 function DraggableTables2(props) {
-  const [frameSets, setFrameSets] = useState([])
-  console.log("frameSets=============================", frameSets) // zzz
+  const [frameSet, setFrameSets] = useState([])
+  console.log("frameSet=============================", frameSet) // zzz
 
   useEffect(() => {
-    console.log("props.frameSets", props.frameSets) // zzz
+    console.log("props.frameSet", props.frameSet) // zzz
 
-    const frameSets = props.frameSets || []
-    frameSets.forEach((frameSet) => {
-      const dialogs = frameSet.dialogs || []
+    const frameSet = props.frameSet || []
+    frameSet.forEach((frame) => {
+      const dialogs = frame.dialogs || []
 
       resetIndices(dialogs)
+      // TODO: if they are reset, don't set the inital data
+      // TODO: if they are reset, don't set the inital data
     })
-    // TODO: if they are reset, don't set the inital data
-    // TODO: if they are reset, don't set the inital data
-    setFrameSets(frameSets)
-  }, [props.frameSets])
+
+    setFrameSets(frameSet)
+  }, [props.frameSet])
 
   function onDragEnd(result) {
     const { source, destination } = result
@@ -131,7 +136,7 @@ function DraggableTables2(props) {
     const dInd = +destination.droppableId
 
     if (sInd === dInd) {
-      const newState = [...frameSets]
+      const newState = [...frameSet]
       const thisFrame = newState[sInd]
       const dialogs = thisFrame.dialogs || []
 
@@ -141,8 +146,8 @@ function DraggableTables2(props) {
 
       resetIndices(thisFrame.dialogs)
     } else {
-      const result = move(frameSets[sInd], frameSets[dInd], source, destination)
-      const newState = [...frameSets]
+      const result = move(frameSet[sInd], frameSet[dInd], source, destination)
+      const newState = [...frameSet]
       newState[sInd] = result[sInd]
       newState[dInd] = result[dInd]
 
@@ -151,7 +156,7 @@ function DraggableTables2(props) {
   }
 
   const addItem = () => {
-    setFrameSets([...frameSets, getItems(1)])
+    setFrameSets([...frameSet, getItems(1)])
   }
 
   const deleteItem = async (item) => {
@@ -166,7 +171,7 @@ function DraggableTables2(props) {
   }
 
   const addGroup = () => {
-    setFrameSets([...frameSets, []])
+    setFrameSets([...frameSet, []])
   }
 
   const renderHeaderButtons = () => {
@@ -234,16 +239,23 @@ function DraggableTables2(props) {
     )
   }
   console.log("render draggable tables++++++++++++++++++++++++++++++++++++++++") // zzz
+  frameToDroppableIdMap = {}
+
+  frameSet.forEach((frame, index) => {
+    frameToDroppableIdMap[index] = frame.frameId
+  })
+  console.log("frameToDroppableIdMap", frameToDroppableIdMap) // zzz
   return (
     <div className={css.main}>
       {renderHeaderButtons()}
       <div className={css.groupContainer}>
         <DragDropContext onDragEnd={onDragEnd}>
           {/* Create a Drop Zone for each FrameSet */}
-          {frameSets.map((table, tableIndex) => {
-            const table2 = table?.dialogs || []
+          {frameSet.map((frame, tableIndex) => {
+            const dialogs = frame?.dialogs || []
 
             return (
+              // <Droppable key={tableIndex} droppableId={frame.frameId}>
               <Droppable key={tableIndex} droppableId={`${tableIndex}`}>
                 {(provided, snapshot) => (
                   <div
@@ -253,14 +265,7 @@ function DraggableTables2(props) {
                     {...provided.droppableProps}
                   >
                     {/* Create a draggable item for each row in FrameSet */}
-                    {table2.map((item, rowIndex) => {
-                      const frameId = table.frameId
-
-                      console.log(
-                        "frameId----------------------------",
-                        frameId
-                      ) // zzz
-
+                    {dialogs.map((item, rowIndex) => {
                       return (
                         <Draggable
                           key={item.id}

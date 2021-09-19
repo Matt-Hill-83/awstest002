@@ -70,7 +70,8 @@ function Dashboard() {
 
   async function fetchFrameSets() {
     const { data } = await API.graphql(graphqlOperation(listFrameSets2))
-    const items = data?.listFrameSets?.items || []
+    const items = [data?.listFrameSets?.items[0] || []]
+    console.log("items", items) // zzz
     const parsedFrameSets = parseFrameSets(items)
     console.log("parsedFrameSets", parsedFrameSets) // zzz
     setRowData(parsedFrameSets)
@@ -127,7 +128,7 @@ function Dashboard() {
         <AddFrameSetModal />
         <AddFrameModal />
       </ButtonGroup>
-      <DraggableTables2 frameSets={rowData}></DraggableTables2>
+      <DraggableTables2 frameSet={rowData}></DraggableTables2>
     </div>
   )
 }
