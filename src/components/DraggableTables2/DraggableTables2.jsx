@@ -46,6 +46,8 @@ const reorder = (list, startIndex, endIndex) => {
 }
 
 const resetIndices = (list) => {
+  // Todo: this should return a null if some indices have been reset?
+  // Todo: this should return a null if some indices have been reset?
   console.log("resetIndices") // zzz
   console.log("list", list) // zzz
 
@@ -75,6 +77,7 @@ const move = (source, destination, droppableSource, droppableDestination) => {
   result[droppableSource.droppableId] = sourceClone
   result[droppableDestination.droppableId] = destClone
 
+  console.log("source", source) // zzz
   return result
 }
 
@@ -97,18 +100,29 @@ const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
 })
 
+const droppableIdMap = {}
+
 function DraggableTables2(props) {
-  const [frameSets, setFrameSets] = useState([getItems(10), getItems(5, 10)])
+  const [frameSets, setFrameSets] = useState([])
+  console.log("frameSets=============================", frameSets) // zzz
 
   useEffect(() => {
-    const transformedFrameSets = props.frameSets.map((frameSet) => {
-      return resetIndices(frameSet)
-    })
-    setFrameSets(transformedFrameSets)
+    console.log("props.frameSets", props.frameSets) // zzz
+
+    const frameSets = props.frameSets || []
+    // frameSets.forEach((frameSet) => {
+    //   const dialogs = frameSet.dialogs || []
+
+    //   resetIndices(dialogs)
+    // })
+    // TODO: if they are reset, don't set the inital data
+    // TODO: if they are reset, don't set the inital data
+    setFrameSets([frameSets[0]?.dialogs || []])
   }, [props.frameSets])
 
   function onDragEnd(result) {
     const { source, destination } = result
+    console.log("result", result) // zzz
 
     // dropped outside the list
     if (!destination) {

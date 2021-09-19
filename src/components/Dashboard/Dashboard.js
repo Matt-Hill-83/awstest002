@@ -72,6 +72,7 @@ function Dashboard() {
     const { data } = await API.graphql(graphqlOperation(listFrameSets2))
     const items = data?.listFrameSets?.items || []
     const parsedFrameSets = parseFrameSets(items)
+    console.log("parsedFrameSets", parsedFrameSets) // zzz
     setRowData(parsedFrameSets)
   }
 
@@ -81,7 +82,11 @@ function Dashboard() {
     items.forEach((frameSet) => {
       const frames = frameSet.Frames?.items || []
       frames.forEach((frame) => {
-        const newFrame = []
+        const newFrame = {
+          frameId: frame.id,
+          frameSetId: frameSet.id,
+          dialogs: [],
+        }
         let dialogs = frame?.Dialogs?.items || []
 
         dialogs = dialogs.filter((item) => !item._deleted)
@@ -98,9 +103,9 @@ function Dashboard() {
             text: dialog.text,
             critter: dialog?.Critter?.name,
           }
-          newFrame.push(newDialog)
+          newFrame.dialogs.push(newDialog)
         })
-        newFrame.sort(function (a, b) {
+        newFrame.dialogs.sort(function (a, b) {
           return a.order - b.order
         })
         output.push(newFrame)
@@ -109,8 +114,9 @@ function Dashboard() {
     console.log("output", output) // zzz
 
     const test = output.filter((item) => {
-      return item.length > 0
+      return item?.dialogs.length > 0
     })
+    console.log("test", test) // zzz
     return test
   }
 
