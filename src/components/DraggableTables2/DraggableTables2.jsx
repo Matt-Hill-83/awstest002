@@ -114,12 +114,12 @@ function DraggableTables2(props) {
     if (!destination) {
       return
     }
-    const sInd = +source.droppableId
-    const dInd = +destination.droppableId
+    const sourceInd = +source.droppableId
+    const destInd = +destination.droppableId
 
-    if (sInd === dInd) {
+    if (sourceInd === destInd) {
       const newState = [...frameSet]
-      const thisFrame = newState[sInd]
+      const thisFrame = newState[sourceInd]
       const dialogs = thisFrame.dialogs || []
 
       const items = reorder(dialogs, source.index, destination.index)
@@ -128,47 +128,19 @@ function DraggableTables2(props) {
 
       resetIndices(thisFrame.dialogs)
     } else {
-      // const result = move({
-      //   sourceObj: frameSet[sInd],
-      //   destObj: frameSet[dInd],
-      //   // droppableSource: source,
-      //   // droppableDestination: destination,
-      // })
-      // const sourceObj = frameSet[sInd]
-      // const destObj = frameSet[dInd]
-      // const droppableSource = source
-      // const droppableDestination = destination
-
-      const sourceClone = { ...frameSet[sInd] }
-      const destClone = { ...frameSet[dInd] }
+      // move item to new table
+      const sourceClone = { ...frameSet[sourceInd] }
+      const destClone = { ...frameSet[destInd] }
 
       const [removed] = sourceClone.dialogs.splice(source.index, 1)
       destClone.dialogs.splice(destination.index, 0, removed)
 
-      // console.log("result--------111111-----------------------", result) // zzz
       const newState = [...frameSet]
-      newState[sInd] = sourceClone
-      newState[dInd] = destClone
+      newState[sourceInd] = sourceClone
+      newState[destInd] = destClone
 
       setFrameSets(newState)
     }
-  }
-
-  const move = ({
-    sourceObj,
-    destObj,
-    droppableSource,
-    droppableDestination,
-  }) => {
-    console.log("move") // zzz
-    const sourceClone = { ...sourceObj }
-    const destClone = { ...destObj }
-    const [removed] = sourceClone.dialogs.splice(droppableSource.index, 1)
-
-    destClone.dialogs.splice(droppableDestination.index, 0, removed)
-
-    console.log("sourceObj", sourceObj) // zzz
-    return { sourceClone, destClone }
   }
 
   const addItem = () => {
