@@ -136,8 +136,6 @@ function DraggableTables2(props) {
       const destObjClone = { ...frameSet[destTableInd] }
       const sourceDialogs = sourceObjClone.dialogs
       const destDialogs = destObjClone.dialogs
-      // const sourceDialogs = [...sourceObjClone.dialogs]
-      // const destDialogs = [...destObjClone.dialogs]
 
       const [removed] = sourceDialogs.splice(sourceDialogInd, 1)
       destDialogs.splice(destDialogInd, 0, removed)
@@ -145,9 +143,6 @@ function DraggableTables2(props) {
       const newState = [...frameSet]
       newState[sourceTableInd] = sourceObjClone
       newState[destTableInd] = destObjClone
-
-      console.log("removed", removed) // zzz
-      console.log("sourceObjClone", sourceObjClone) // zzz
 
       removed.frameId = destObjClone.frameId
 
@@ -157,12 +152,13 @@ function DraggableTables2(props) {
         frameID: destObjClone.frameId,
         _version: removed.dialogVersion,
       })
+
+      // update dialogVersion to item will update again when you reset indices
       removed.dialogVersion = removed.dialogVersion + 1
 
       resetIndices(sourceDialogs)
       resetIndices(destDialogs)
 
-      console.log("newState", newState) // zzz
       refetchData()
       setFrameSets(newState)
     }
