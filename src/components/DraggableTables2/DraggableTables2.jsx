@@ -134,8 +134,10 @@ function DraggableTables2(props) {
       // move item to new table
       const sourceObjClone = { ...frameSet[sourceTableInd] }
       const destObjClone = { ...frameSet[destTableInd] }
-      const sourceDialogs = [...sourceObjClone.dialogs]
-      const destDialogs = [...destObjClone.dialogs]
+      const sourceDialogs = sourceObjClone.dialogs
+      const destDialogs = destObjClone.dialogs
+      // const sourceDialogs = [...sourceObjClone.dialogs]
+      // const destDialogs = [...destObjClone.dialogs]
 
       const [removed] = sourceDialogs.splice(sourceDialogInd, 1)
       destDialogs.splice(destDialogInd, 0, removed)
@@ -153,7 +155,7 @@ function DraggableTables2(props) {
         frameID: destObjClone.frameId,
         _version: removed.dialogVersion,
       })
-
+      console.log("newState", newState) // zzz
       setFrameSets(newState)
     }
   }
