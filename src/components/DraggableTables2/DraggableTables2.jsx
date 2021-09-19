@@ -117,7 +117,8 @@ function DraggableTables2(props) {
     // })
     // TODO: if they are reset, don't set the inital data
     // TODO: if they are reset, don't set the inital data
-    setFrameSets([frameSets[0]?.dialogs || []])
+    setFrameSets(frameSets)
+    // setFrameSets([frameSets[0]?.dialogs || []])
   }, [props.frameSets])
 
   function onDragEnd(result) {
@@ -235,37 +236,41 @@ function DraggableTables2(props) {
       {renderHeaderButtons()}
       <div className={css.groupContainer}>
         <DragDropContext onDragEnd={onDragEnd}>
-          {frameSets.map((table, tableIndex) => (
-            <Droppable key={tableIndex} droppableId={`${tableIndex}`}>
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}
-                  className={css.group}
-                  {...provided.droppableProps}
-                >
-                  {table.map((item, rowIndex) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={rowIndex}
-                    >
-                      {(provided, snapshot) =>
-                        getRow({
-                          provided,
-                          snapshot,
-                          item,
-                          tableIndex,
-                          rowIndex,
-                        })
-                      }
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          ))}
+          {frameSets.map((table, tableIndex) => {
+            const table2 = table?.dialogs || []
+
+            return (
+              <Droppable key={tableIndex} droppableId={`${tableIndex}`}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    className={css.group}
+                    {...provided.droppableProps}
+                  >
+                    {table2.map((item, rowIndex) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={rowIndex}
+                      >
+                        {(provided, snapshot) =>
+                          getRow({
+                            provided,
+                            snapshot,
+                            item,
+                            tableIndex,
+                            rowIndex,
+                          })
+                        }
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            )
+          })}
         </DragDropContext>
       </div>
     </div>
