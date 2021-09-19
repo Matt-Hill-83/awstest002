@@ -88,6 +88,7 @@ const getListStyle = (isDraggingOver) => ({
 let frameToDroppableIdMap = {}
 
 function DraggableTables2(props) {
+  const { refetchData } = props
   const [frameSet, setFrameSets] = useState([])
   console.log("frameSet=============================", frameSet) // zzz
 
@@ -114,30 +115,44 @@ function DraggableTables2(props) {
     if (!destination) {
       return
     }
-    const sourceInd = +source.droppableId
-    const destInd = +destination.droppableId
+    const sourceTableInd = +source.droppableId
+    const destTableInd = +destination.droppableId
 
-    if (sourceInd === destInd) {
+    const sourceDialogInd = source.index
+    const destDialogInd = destination.index
+
+    if (sourceTableInd === destTableInd) {
       const newState = [...frameSet]
-      const thisFrame = newState[sourceInd]
+      const thisFrame = newState[sourceTableInd]
       const dialogs = thisFrame.dialogs || []
 
-      const items = reorder(dialogs, source.index, destination.index)
-      thisFrame.dialogs = items
+      thisFrame.dialogs = reorder(dialogs, sourceDialogInd, destDialogInd)
       setFrameSets(newState)
 
       resetIndices(thisFrame.dialogs)
     } else {
       // move item to new table
-      const sourceClone = { ...frameSet[sourceInd] }
-      const destClone = { ...frameSet[destInd] }
+      const sourceObjClone = { ...frameSet[sourceTableInd] }
+      const destObjClone = { ...frameSet[destTableInd] }
+      const sourceDialogs = [...sourceObjClone.dialogs]
+      const destDialogs = [...destObjClone.dialogs]
 
-      const [removed] = sourceClone.dialogs.splice(source.index, 1)
-      destClone.dialogs.splice(destination.index, 0, removed)
+      const [removed] = sourceDialogs.splice(sourceDialogInd, 1)
+      destDialogs.splice(destDialogInd, 0, removed)
 
       const newState = [...frameSet]
-      newState[sourceInd] = sourceClone
-      newState[destInd] = destClone
+      newState[sourceTableInd] = sourceObjClone
+      newState[destTableInd] = destObjClone
+
+      console.log("removed", removed) // zzz
+      console.log("sourceObjClone", sourceObjClone) // zzz
+
+      editDialog({
+        id: removed.dialogId,
+        order: destDialogInd,
+        frameID: destObjClone.frameId,
+        _version: removed.dialogVersion,
+      })
 
       setFrameSets(newState)
     }

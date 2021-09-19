@@ -38,7 +38,7 @@ function Dashboard() {
     ).subscribe({
       next: ({ _, value }) => {
         console.log("onUpdateDialog") // zzz
-        fetchFrameSets()
+        // fetchFrameSets()
       },
     })
 
@@ -128,7 +128,10 @@ function Dashboard() {
         <AddFrameSetModal />
         <AddFrameModal />
       </ButtonGroup>
-      <DraggableTables2 frameSet={rowData}></DraggableTables2>
+      <DraggableTables2
+        frameSet={rowData}
+        refetchData={fetchFrameSets}
+      ></DraggableTables2>
     </div>
   )
 }
