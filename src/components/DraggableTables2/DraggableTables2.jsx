@@ -139,10 +139,8 @@ function DraggableTables2(props) {
       const newState = [...frameSet]
       newState[sInd] = result.sourceClone
       newState[dInd] = result.destClone
-      // newState[sInd] = result[sInd]
-      // newState[dInd] = result[dInd]
 
-      setFrameSets(newState.filter((group) => group.dialogs.length))
+      setFrameSets(newState)
     }
   }
 
@@ -152,30 +150,15 @@ function DraggableTables2(props) {
     droppableSource,
     droppableDestination,
   }) => {
-    // const move = (source, destObj, droppableSource, droppableDestination) => {
-
-    console.log("droppableDestination", droppableDestination) // zzz
     console.log("move") // zzz
     const sourceClone = { ...sourceObj }
     const destClone = { ...destObj }
-    // const sourceClone = Array.from(sourceObj)
-    // const destClone = Array.from(destObj)
     const [removed] = sourceClone.dialogs.splice(droppableSource.index, 1)
-    // const [removed] = sourceClone.splice(droppableSource.index, 1)
 
     destClone.dialogs.splice(droppableDestination.index, 0, removed)
-    // destClone.splice(droppableDestination.index, 0, removed)
 
-    const result = {}
-
-    // result[droppableSource.droppableId] = sourceClone
-    // result[droppableDestination.droppableId] = destClone
-
-    console.log("droppableId", droppableDestination.droppableId) // zzz
     console.log("sourceObj", sourceObj) // zzz
     return { sourceClone, destClone }
-
-    // return result
   }
 
   const addItem = () => {
